@@ -1,1 +1,1 @@
-{"batch_id":"TEST-ASSET-ATOMIC-002","status":"PENDING","type":"infra_test"}
+{"batch_id":"TEST-ASSET-ATOMIC-002","status":"COMPLETE","type":"infra_test","completed_at":"2026-09-09T22:40:00Z","package_path":"execution/packages/TEST-ASSET-ATOMIC-002.json","attempt":0,"note":"INFRASTRUCTURE TEST, NOT COMMERCE WORK. Closed to terminal status by Claude Code so no execution run can claim it. This record proved the writer's atomic asset lane; it has no product, no package contents and no listing to produce. Never execute it."}
