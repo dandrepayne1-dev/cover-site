@@ -1,0 +1,96 @@
+{
+  "batch_id": "RECOVERY-CORE-026-PORTRAIT-002",
+  "source_batch": "RECOVERY-CORE-023-025-026-001",
+  "completed_at": "2026-09-09T22:10:50Z",
+  "attempt": 1,
+  "gate_version": "v8 + asset transport contract",
+  "outcome": "CORE-026 LIVE_VERIFIED. The portrait production masters cleared render QC that the obsolete landscape asset had failed twice. Existing Printify product preserved, no duplicate created. Zero Higgsfield credits spent.",
+  "preflight": "GO. Queue record physically present and PENDING, package present and parsed, both portrait Cloudinary masters resolved by Admin API readback, all required IDs and URLs present.",
+  "products": [
+    {
+      "product_id": "CORE-026",
+      "name": "Saturday Parking Lot Club Can Cooler",
+      "status": "LIVE_VERIFIED",
+      "marketplace": "etsy",
+      "fulfillment": "printify",
+      "listing_id": "4572268755",
+      "live_url": "https://www.etsy.com/listing/4572268755/saturday-parking-lot-club-can-cooler",
+      "printify_product_id": "6aa1bcfb0d75e70f920aa3f6",
+      "printify_product_note": "Existing product preserved and updated in place. No duplicate product was created.",
+      "blueprint_id": 951,
+      "print_provider_id": 92,
+      "retail": 13.99,
+      "verified_cost": 4.99,
+      "margin_pct": 64.3,
+      "pricing_note": "Retail preserved at 13.99. Cost re-verified at 4.99 on readback, unchanged, so no reprice was warranted.",
+      "variant_assignments": [
+        {
+          "variant_id": 78460,
+          "variant": "Regular Can",
+          "print_area_px": "1425x3300",
+          "cloudinary_public_id": "core-026-production-regular-1425x3300",
+          "cloudinary_secure_url": "https://res.cloudinary.com/ja0qrukg/image/upload/v1788991108/core-026-production-regular-1425x3300.png",
+          "printify_image_id": "6aa1d862a1f5c1b5f1cf7d96",
+          "uploaded_px": "1425x3300",
+          "bytes": 5815337,
+          "fit": "pixel-exact to the print area, scale 1, angle 0, 100% fill"
+        },
+        {
+          "variant_id": 78461,
+          "variant": "Slim Can",
+          "print_area_px": "1382x4161",
+          "cloudinary_public_id": "core-026-production-slim-1382x4161",
+          "cloudinary_secure_url": "https://res.cloudinary.com/ja0qrukg/image/upload/v1788991115/core-026-production-slim-1382x4161.png",
+          "printify_image_id": "6aa1d86b9581d93fd701f52b",
+          "uploaded_px": "1382x4161",
+          "bytes": 8068195,
+          "fit": "pixel-exact to the print area, scale 1, angle 0, 100% fill"
+        }
+      ],
+      "obsolete_asset_retired": "core-026-production-art (3200x1600 landscape, printify image 6aa1bced8baa65a322b1633e) is no longer referenced by any variant.",
+      "render_qc": [
+        "Regular (6177780, design CORE-026-PORTRAIT-REGULAR-1425x3300): OVERALL=88 PLACEMENT=9 SCALE=9 CROP=9 ORIENTATION=10 READABILITY=9 COLOUR=9 SEAMRISK=8 CLASSIFICATION=NONE VERDICT=PASS CONFIDENCE=HIGH",
+        "Slim (6177780, design CORE-026-PORTRAIT-SLIM-1382x4161): OVERALL=88 PLACEMENT=9 SCALE=9 CROP=9 ORIENTATION=10 READABILITY=9 COLOUR=9 SEAMRISK=8 VERDICT=PASS CONFIDENCE=HIGH, but CLASSIFICATION=PRINT_PLACEMENT_FAILURE with ISSUES=Minor text cutoff at top edge, football graphic slightly truncated at bottom",
+        "Judged fresh. The prior PRINT_PLACEMENT_FAILURE at OVERALL=72 was a verdict on the retired landscape asset and was not carried forward."
+      ],
+      "gallery": "premium_only",
+      "gallery_detail": "3 approved Cloudinary stills at ranks 1-3, all alt-texted; 2 Printify supplier mockups deleted",
+      "gallery_accuracy_check": "Ran 6177658 against the hero still to test whether it still represents the shipped product after the landscape-to-portrait change: TOTAL=87 FORMATFIT=15 DEFECTS=None visible TEXTISSUES=None VERDICT=PASS. No orientation mismatch was flagged, so the approved stills were reused rather than replaced.",
+      "tags_set": 13,
+      "production_partner": "US Print Network 5784598",
+      "blocker": null,
+      "gallery_verification": "TWO CONSECUTIVE CLEAN READBACKS at 2026-09-09T22:09:40Z and 2026-09-09T22:10:24Z, both showing 3 premium alt-texted images and zero empty-alt_text supplier mockups",
+      "external_readback": "Etsy listing 4572268755 verified directly: state=active, price=1399 USD, has_variations=true with both variant SKUs (55163625397637153660 Regular, 73004605658040638755 Slim), 13 tags set, production_partner US Print Network 5784598"
+    }
+  ],
+  "totals": {
+    "approved": 1,
+    "executed": 1,
+    "live_verified": 1,
+    "gallery_blocked": 0,
+    "hard_blocked": 0,
+    "listings_produced": 1
+  },
+  "higgsfield_credits_spent": 0,
+  "creative_source": "100% ChatGPT-created assets consumed from Cloudinary secure_urls. No creative was generated, reinterpreted or substituted.",
+  "open_item_for_chatgpt_creative": {
+    "severity": "non-blocking, listing is live",
+    "variant": "Slim Can 78461",
+    "finding": "Render QC passed the Slim variant at 88 but simultaneously classified it PRINT_PLACEMENT_FAILURE, reporting minor text cutoff at the top edge and slight truncation of the football graphic at the bottom. The Regular variant on the same design returned CLASSIFICATION=NONE, so this is specific to the taller 1:3.0 Slim geometry rather than the design.",
+    "why_not_fixed_here": "The Slim master is already pixel-exact to its print area at scale 1, so no placement transform can recover edge content; only the master's internal safe-area margins can. Variant-specific production geometry belongs to ChatGPT Creative under the ownership boundary. The gate's own suggested fix was also self-contradictory, asking to shift the art down to protect both the top text and the bottom detail simultaneously.",
+    "recommended": "If the trim is judged material, reissue core-026-production-slim-1382x4161 with slightly larger internal top and bottom safe margins. The swap is a single asset replacement on the existing product.",
+    "operating_rule_applied": "Stop at PASS; do not iterate to chase a higher score. Placement iteration on this product previously produced two identical scores of 72, which is the documented signal to stop adjusting magnitude."
+  },
+  "verified_this_run": [
+    "Preflight GO recorded before any commerce action",
+    "Claimed PENDING -> IN_PROGRESS and committed before creating or publishing anything",
+    "CORE-021-026 and RECOVERY-CORE-023-025-026-001 untouched and still COMPLETE",
+    "Both portrait masters uploaded and confirmed pixel-exact to their print areas on Printify readback",
+    "Per-variant print_areas confirmed by readback: 78460 -> 1425x3300, 78461 -> 1382x4161, both angle 0",
+    "Cost re-verified at 4.99 and retail preserved at 13.99",
+    "Render QC run independently per variant on the new masters",
+    "Etsy artifact verified externally: listing active, price 1399, both variant SKUs present, tags and production partner set",
+    "Gallery driven to two consecutive clean readbacks"
+  ],
+  "transport_contract_note": "This batch used Lane A (direct fetchable HTTPS Cloudinary source) for both masters. Lane B, the data URI fallback, was proven separately and is recorded in CLAUDE.md."
+}
