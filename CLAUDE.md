@@ -1,5 +1,5 @@
 # PAYNE COMMERCE — CLAUDE CODE OPERATING FILE
-**Last verified: 9 September 2026 (gate v8 — post CORE-021-026 execution test)**
+**Last verified: 9 September 2026 (gate v8 + permanent asset transport contract)**
 
 You are the execution engine for an automated multi-channel commerce operation. Your job is
 post-approval execution: take approved products from a package to a verified live listing, in
@@ -78,6 +78,81 @@ Product Hunter (supply-first, ~30%) merge into one ranked approval board.
 
 **Do not run hunts, build approval boards, research opportunities, or propose products.** If a
 package arrives without approval, request it rather than proceeding or hunting a replacement.
+
+---
+
+## ASSET TRANSPORT CONTRACT (permanent, authorized 9 Sep 2026)
+
+**Creative ownership does not change. Transport is not creative generation.**
+
+ChatGPT remains responsible for opportunity and concept, design, final approved creative,
+production-master decisions, variant-specific production geometry, and creative corrections.
+**Claude may move approved bytes into Cloudinary when needed** — uploading bytes is
+infrastructure, not authorship.
+
+### TWO AUTHORIZED INGESTION LANES
+
+**LANE A — DIRECT CLOUD URL** *(preferred whenever a fetchable HTTPS source exists)*
+
+Approved asset → Cloudinary ingests the HTTPS source → Admin API readback verifies the exact
+asset → capture `public_id` + `secure_url`.
+
+**LANE B — DATA URI FALLBACK** *(when the bytes exist but no fetchable HTTPS URL does)*
+
+Approved PNG master → convert the **exact file bytes** to `data:image/png;base64,<REAL FILE BASE64>`
+→ upload via Make **6179772** (`public_id`, `source_url`) → verify through the Cloudinary Admin API
+→ capture the exact `public_id` + `secure_url`.
+
+**Never hand-enter or reconstruct base64.** The bytes must come from the actual approved production
+file. Proven 9 Sep 2026: a hand-typed string failed with `[400] Failed to ping image`; the real
+file bytes uploaded and verified on the first attempt.
+
+### PRODUCTION FILE RULE
+
+- **Production masters default to PNG.** Avoid JPEG unless a specific supplier requires it — the
+  artwork QC gate (6177658) hardcodes `image/png` and cannot read a JPEG master.
+- For Lane B, keep the PNG small enough to stay under the connector payload limit **after base64
+  expansion** (~33% growth against a 10MB inbound limit, so roughly 7MB of source).
+- **If the master exceeds the safe data-URI size, use Lane A or another verified cloud transport.
+  Never degrade production quality merely to fit the transport.**
+
+### OWNERSHIP BOUNDARY
+
+**Claude MAY:** transport approved assets · verify Cloudinary assets · create and read execution
+packages · claim PENDING packages · execute Printify/storefront work.
+
+**Claude MAY NOT:** redesign approved creative · generate substitute artwork · reinterpret
+composition · alter typography or creative direction · choose replacement designs independently.
+
+**If production geometry exposes a creative problem, return it to ChatGPT Creative.**
+
+---
+
+## THREE HARD GATES BEFORE AN EXECUTION MESSAGE
+
+Upstream must clear all three before D'Andre is handed a Claude execution authorization. **An
+acknowledgement never satisfies a gate — only the artifact does.**
+
+**GATE 1 — CLOUDINARY VERIFIED.** Every required production asset exists in Cloudinary, resolves by
+Admin API readback, and has the expected dimensions, expected format, exact `public_id` and exact
+`secure_url`. An upload acknowledgement alone does NOT count.
+
+**GATE 2 — PACKAGE VERIFIED.** The immutable package exists in the execution repository, parses,
+carries the exact verified Cloudinary references, and carries the correct product/variant assignments.
+
+**GATE 3 — QUEUE VERIFIED.** The authoritative queue record physically exists in Git and reads
+`status: PENDING`. **A successful Make acknowledgement alone does NOT count** — a writer run can
+report success paths while a GitHub `422 Validation Failed` leaves no package behind. The queue
+artifact itself is authoritative.
+
+### PREFLIGHT — deterministic, no commerce actions
+
+Given a `batch_id`, verify: (1) the queue record physically exists, (2) `status: PENDING`, (3) the
+immutable package exists, (4) the package parses, (5) every referenced Cloudinary production asset
+resolves, (6) required IDs/URLs are present.
+
+Return **`GO`** or **`NO-GO — <exact missing/broken artifact>`**.
+**Perform no commerce actions during a NO-GO preflight.**
 
 ---
 
@@ -201,6 +276,7 @@ Temporary GitHub setup/testing scenarios were deactivated after validation.
 a re-run safe. Skipping step 2 means a second invocation republishes the whole batch.
 
 **A PENDING record is not self-authorizing.** Claim only work you have been authorized to run.
+Run the preflight above before claiming; a NO-GO stops before any commerce action.
 
 **`COMPLETE` is never reopened, reset, or reused.** Unfinished or blocked products from a COMPLETE
 batch are recovered as a **new recovery batch/package with a NEW `batch_id`** — never by requeueing
@@ -221,7 +297,7 @@ connection", scoped to `dandrepayne1-dev`, no expiry). Verified: repo read, bran
 commit creation, ref update, post-write readback. *Supersedes the retired connection 10984225.*
 **Make** — org 8063408 · team 2448608 · zone us2.make.com
 **Google Sheets** — workbook `13ojqt_rGtS_FjHnzhE5c1k1WRm-pbH8jHZCG-vAk-l0` · connection 10171000
-**Cloudinary** — cloud `ja0qrukg` · connection 10924445 *(optional; never a blocker)*
+**Cloudinary** — cloud `ja0qrukg` · connection 10924445 *(standard asset handoff layer; two ingestion lanes)*
 **Printify** — connection 10852458
 **Etsy** — connection 10852463 · shop_id 67844439 · user_id 931461768
 **Shopify** — connection 10699067 · wirjvc-ur.myshopify.com
@@ -337,10 +413,14 @@ Do not force every product onto every channel. Match the channel to the buyer.
 - Image upload needs the two-module chain; a single module cannot do binary uploads.
 - Supplier images are identifiable by **empty `alt_text`**. Premium uploads always carry alt text.
 
-**Cloudinary** *(optional path)*
+**Cloudinary** *(standard asset layer — see the transport contract)*
+- **Strict transformations appear enabled on this account.** Both a `.png` extension swap and an
+  `f_png` transformation return 400 at fetch time, so on-the-fly format conversion is unavailable.
+  This is why JPEG masters cannot be routed into the PNG-only artwork QC gate.
 - SVGs with embedded fonts or filters will not rasterize at any size. If `f_png` with no resize
   returns 400, the file is the problem, not the dimensions.
-- Connector has a 10MB inbound limit.
+- Connector has a 10MB inbound limit; base64 inflates ~33%, so Lane B source files should stay
+  under roughly 7MB. A 9.7MB master (CORE-023) would exceed it — use Lane A for those.
 - Use supplier-dimension PNG as the production master; SVG is editable backup only.
 
 **CJ**
@@ -504,6 +584,15 @@ FAST-003 `1732626836569952980`
 
 **Zero orders and zero traffic data across the entire catalogue.** Every performance assumption in
 this system is modelled, not measured. Label them as such.
+
+---
+
+## PENDING CLEANUP
+
+`Commerce/_pipeline-test-datauri` — a valid 76-byte Lane B transport test, **not a production
+asset.** Delete it when a write-capable Cloudinary path exists. There is none today: scenario
+6179804 hardcodes `GET` in its blueprint and 6179772 only uploads, so no DELETE route is available.
+Enabling this needs either a method input on 6179804 or a small delete scenario.
 
 ---
 
