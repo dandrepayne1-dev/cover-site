@@ -1,10 +1,12 @@
 {
   "batch_id": "PHYSICAL-011-020",
   "package_path": "execution/packages/2026-09-09-PHYSICAL-011-020.json",
-  "status": "IN_PROGRESS",
+  "status": "FAILED",
   "written_at": "2026-09-09T16:30:00Z",
   "started_at": "2026-09-09T16:30:00Z",
-  "completed_at": null,
+  "completed_at": "2026-09-09T16:40:00Z",
   "attempt": 1,
-  "result_path": null
+  "result_path": "execution/results/PHYSICAL-011-020.json",
+  "failure_reason": "No listing produced. B1: TikTok Shop has no API listing-creation path from CJ (UI modal only). B2: the approved premium Cloudinary creative for PHYSICAL-011..020 does not exist (404 against a working positive control). Nothing was created, published or modified on any channel.",
+  "requeue_note": "FAILED is terminal and is never automatically reclaimed. This record must NOT be reset to PENDING by any later run. A retry requires a deliberate new requeue originating outside this process, after the creative is uploaded and the channel decision is made. This was attempt 1 of a maximum 3."
 }

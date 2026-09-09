@@ -1,0 +1,66 @@
+{
+  "batch_id": "PHYSICAL-011-020",
+  "completed_at": "2026-09-09T16:40:00Z",
+  "outcome": "FAILED — no listing produced. Two upstream blockers, both identified BEFORE any product was created anywhere. Nothing was published, connected or modified on any channel.",
+  "blockers": [
+    {
+      "id": "B1",
+      "title": "TikTok Shop (the batch's primary channel) has no API listing-creation path from CJ",
+      "evidence": "The CJ tool surface exposes only: save_product_to_shop (registers an ALREADY-EXISTING store product into CJ), create_product_connection (binds an ALREADY-EXISTING platformProductId to a CJ product for fulfillment), and open_listing_page / open_product_connect_page (which open the CJ listing modal in a browser). No tool creates a TikTok Shop listing. No TikTok Shop MCP server is connected to this session.",
+      "gate_item": "Executability gate item 7 — an unavoidable UI-only step, identified before execution rather than mid-execution",
+      "expected_status": "NATIVE_UI_REQUIRED",
+      "owner": "architecture / tooling"
+    },
+    {
+      "id": "B2",
+      "title": "The approved premium creative does not exist in Cloudinary",
+      "evidence": "Cloudinary Admin API single-resource reads (via Make 6179804) return 404 for 'Physical/PHYSICAL-011-01-HERO', 'Physical/PHYSICAL-020-01-HERO' and the package's literal filename 'PHYSICAL-011_HERO'. Positive control 'Physical/PHYSICAL-001-01-HERO' returns 200 on the same endpoint, so the 404s are real absences and not a broken path. The account holds premium sets for PHYSICAL-001 and PHYSICAL-005 only. Direct https probes of res.cloudinary.com from this container are blocked by the agent proxy (CONNECT 403) and proved nothing either way; the Admin API path is what settled it.",
+      "gate_item": "Gallery standard — supplier mockups may never be the final customer-facing gallery where we control images (we do control them on Shopify)",
+      "expected_status": "READY_FOR_PREMIUM_ASSETS",
+      "owner": "ChatGPT — owns creative generation and Cloudinary upload before handoff"
+    }
+  ],
+  "channel_assessment": {
+    "tiktok_shop": "BLOCKED — no listing-creation API (B1). CJ shop 'Payne Commerce' 2609091509553521700 is connected, status 1, fulfillment 1, so the FULFILLMENT side is live; only listing creation is UI-only.",
+    "shopify": "API path exists and is the only channel that can create a listing autonomously, but blocked on B2. Shopify MCP reads succeeded without an interactive approval prompt in this session (get-shop-info returned My Store 3 / wirjvc-ur.myshopify.com / Basic / USD), which contradicts the standing CLAUDE.md note that Shopify MCP is unusable autonomously — WRITES WERE NOT TESTED, because a test write would have created a real product. Note the CJ-side Shopify shop 2608271647263538900 reports fulfillmentStatus 0.",
+    "etsy": "Not eligible. These are generic commodity dropship goods; the locked rule is not to dump generic CJ products onto Etsy.",
+    "ebay": "CJ shop 2609041917573532200 is connected with fulfillment 1, and eBay is the documented fit for commodity household goods — but listing creation is the same CJ UI modal as B1, so it is equally blocked."
+  },
+  "products": [
+    {"product_id":"PHYSICAL-011","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJJT152986601AZ","cj_product_id":"1550415270504837120","supplier_state":"API_VERIFIED","cj_cost_range_usd":"0.98-17.48","cj_inventory":463851,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"CJ title is a pop-up basin bouncing-core drain plug; the approved name claims '3-in-1 ... + Hair Catcher'. Confirm the exact variant actually includes the hair catcher before listing — factual SKU match, not a creative change."},
+    {"product_id":"PHYSICAL-012","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJCJ105384101AZ","cj_product_id":"1374636151603859456","supplier_state":"API_VERIFIED","cj_cost_range_usd":"2.99-8.97","cj_inventory":63985,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"CJ lists this as a 12pcs chopper set; approved as '12-in-1'. Variant must match whichever count the creative depicts."},
+    {"product_id":"PHYSICAL-013","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJYD205478501AZ","cj_product_id":"1798640551353528320","supplier_state":"API_VERIFIED","cj_cost_range_usd":"2.16-2.88","cj_inventory":125874,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"Rechargeable misting grooming brush. Any before/after hair-removal demonstration imagery would be a fabricated performance claim and must not be generated."},
+    {"product_id":"PHYSICAL-014","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJJT148225101AZ","cj_product_id":"1525299716655951872","supplier_state":"API_VERIFIED","cj_cost_range_usd":"3.91-15.48","cj_inventory":902708,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"Same fabricated-performance caution on hair-pickup demonstrations."},
+    {"product_id":"PHYSICAL-015","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJYD237778201AZ","cj_product_id":"2505160457141629100","supplier_state":"API_VERIFIED","cj_cost_range_usd":"0.98-5.65","cj_inventory":50038,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"Approved as a 'bundle'; CJ SKU is a single foldable storage bag. Bundle composition must be defined before pricing."},
+    {"product_id":"PHYSICAL-016","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJXC103466701AZ","cj_product_id":"1368832521093124096","supplier_state":"API_VERIFIED","cj_cost_range_usd":"2.10-2.17","cj_inventory":120000,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"Seasonal — value depends on launching ahead of winter."},
+    {"product_id":"PHYSICAL-017","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJKD156344101AZ","cj_product_id":"1569884393144070144","supplier_state":"API_VERIFIED","cj_cost_range_usd":"3.62-9.68","cj_inventory":1184422,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"Colour and size variant must match the creative exactly; this SKU has a wide variant spread."},
+    {"product_id":"PHYSICAL-018","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJGY174846501AZ","cj_product_id":"1653041912300969984","supplier_state":"API_VERIFIED","cj_cost_range_usd":"1.29-2.11","cj_inventory":60973,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":null},
+    {"product_id":"PHYSICAL-019","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJJJCFCF00399","cj_product_id":"4328806F-26C7-47B0-940F-35B1AE409B00","supplier_state":"API_VERIFIED","cj_cost_range_usd":"0.23-3.69","cj_inventory":814849,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"Lowest landed cost in the batch; 6117 existing CJ listings means heavy competition."},
+    {"product_id":"PHYSICAL-020","status":"READY_FOR_PREMIUM_ASSETS","tiktok_status":"NATIVE_UI_REQUIRED","cj_sku":"CJYD219292101AZ","cj_product_id":"2411130129241608900","supplier_state":"API_VERIFIED","cj_cost_range_usd":"2.11-24.86","cj_inventory":251007,"listing_id":null,"live_url":null,"blocker":"B1+B2","note":"Only 28 existing listings — least saturated in the batch. Wide cost spread means variant choice drives margin."}
+  ],
+  "verified_this_run": [
+    "All 10 CJ SKUs resolve to real CJ products with live inventory (API_VERIFIED) — executability gate items 1 and 2 (cost range) pass",
+    "CJ account authenticated (CJ5768320, URL direct token mode)",
+    "Destination channel check (gate item 4) completed FIRST, as required: CJ shops enumerated and their connection/fulfillment states recorded",
+    "Cloudinary premium assets checked against a working positive control"
+  ],
+  "not_verified": [
+    "Exact per-variant product cost — requires a chosen variant, which cannot be finalised until the creative exists (the variant must factually match the image that ships)",
+    "US shipping / landed economics — Make 6209505 (CJ Freight Quick Quote) requires a 'CJ Access Token' input that this session does not hold; the CJ MCP token is embedded in the server URL and is not readable here",
+    "Shopify write capability — deliberately untested, since the only honest test would create a real product"
+  ],
+  "totals": {
+    "approved": 10, "executed": 0, "live_verified": 0,
+    "gallery_blocked": 0, "hard_blocked": 10, "listings_produced": 0
+  },
+  "requeue_requirements": [
+    "ChatGPT to generate the premium creative for PHYSICAL-011 through PHYSICAL-020 and upload to Cloudinary under the established convention Physical/PHYSICAL-0NN-01-HERO (plus DETAIL/USE/etc. ranks), and to supply the asset URLs in the package rather than bare filenames",
+    "A decision on channel: either accept a native-UI last mile for TikTok/eBay listing creation and plan the batch as NATIVE_UI_REQUIRED, or route the batch to Shopify where an API path exists",
+    "A CJ access token available to the execution session if landed-cost economics are to be computed automatically via Make 6209505"
+  ],
+  "notes": [
+    "The queue contract in CLAUDE.md names branch claude/payne-commerce-execution-0zfnb6, which does not exist in dandrepayne1-dev/cover-site — the repo had only 'main' and no execution/ tree at all (confirmed via git ls-remote and the GitHub API). The scaffolding and this record were created on the branch assigned to this session, claude/new-session-8rlqti.",
+    "No package file was found in the repo. The batch was recovered from Make scenario 6209561 execution f9c325313efe4abfa2bf1e62ce7ecde2 (run by D'Andre, 2026-09-09 09:54Z) and corroborated against execution 3dd5fbb430384c0fb06705b0aa2b116b (09:43Z); both name the same ten products and SKUs.",
+    "Scenario 6209561 was modified at 10:52Z, after both runs, and now requires 'execution_package' as an input — it no longer carries the batch itself."
+  ]
+}
