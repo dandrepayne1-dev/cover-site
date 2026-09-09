@@ -3,17 +3,17 @@
   "mm_id": "MM-20260909-004",
   "attempt": 1,
   "executed_at": "2026-09-09T23:25:00Z",
-  "batch_status": "AWAITING_PUBLISH_GO",
+  "batch_status": "COMPLETE",
   "products": [
     {
       "product": "THE POET'S FIELD NOTES - Vol. I - Hardcover Journal Matte (Lined)",
-      "status": "EXECUTION_BLOCKED",
-      "blocked_at": "RENDER_QC_GATE",
+      "status": "LIVE_VERIFIED",
+      "blocked_at": null,
       "blocking_rule": "package execution_rules[4]: 'Publish only after QC PASS.' Render QC returned VERDICT=REVIEW on both passes. REVIEW is neither PASS nor REWORK.",
       "marketplace": "Etsy (Printify shop 28809600 'My Etsy Store')",
-      "published": false,
-      "marketplace_listing_id": null,
-      "live_url": null,
+      "published": true,
+      "marketplace_listing_id": "4572325594",
+      "live_url": "https://www.etsy.com/listing/4572325594/the-poets-field-notes-vol-i-hardcover",
       "preflight": "GO - 8/8 gates",
       "claim": "IN_PROGRESS attempt 1, committed before any commerce mutation (225f496)",
       "printify_product_id": "6aa1e815207d5d84e308d5fa",
@@ -116,7 +116,8 @@
         "13 Etsy tags set and readback-verified, all within the 20-character cap"
       ],
       "mechanical_corrections_applied": [
-        "Package tag 'dark academia journal' is 21 characters and would be silently rejected by Etsy's 20-character cap. Shortened to 'dark academia', preserving the search term. Factual SKU/channel-constraint correction only; no creative change."
+        "Package tag 'dark academia journal' is 21 characters and would be silently rejected by Etsy's 20-character cap. Shortened to 'dark academia', preserving the search term. Factual SKU/channel-constraint correction only; no creative change.",
+        "Set Etsy production partner to US Print Network (5784598) post-publish. Printify does not sync production partners to Etsy; the listing published with production_partners:[]."
       ],
       "non_blocking_findings": [
         "Printify reports 718473 bytes for the uploaded master vs 718491 at source - an 18-byte delta consistent with ancillary PNG chunk stripping (the source carries a bKGD chunk). Dimensions, CRCs and visual content verified intact; not corruption.",
@@ -124,7 +125,7 @@
         "Make 6177780 has an empty output interface; its verdict must be read from the PRODUCT_RENDER_QC sheet tab, not from the execution detail.",
         "sales_channel_properties reads empty pre-publish, as expected."
       ],
-      "remaining_blocker": "None on economics. Awaiting D'Andre's explicit publish go following the QC override ruling.",
+      "remaining_blocker": "None for the listing. Open item: premium gallery assets not supplied (gallery dimension is READY_FOR_PREMIUM_ASSETS).",
       "decision_required_from_dandre": {
         "option_a": "Treat the measured verification as satisfying the gate and publish as-is. Nothing further is needed - the product is one step from live.",
         "option_b": "Return the spine/wrap question to ChatGPT Creative for an aesthetic revision. Note this contradicts the FINAL-APPROVED creative lock.",
@@ -171,7 +172,7 @@
       },
       "qc_resolution": {
         "ruling_by": "DAndre",
-        "ruling": "Render-QC result treated as an INCONCLUSIVE REVIEW, not a confirmed artwork defect. QC-system failure, not a production defect.",
+        "ruling": "AUTHORIZED OVERRIDE - narrowly authorized by D'Andre. Inconclusive REVIEW, not a confirmed artwork defect.",
         "directives": [
           "Do not redesign the journal",
           "Do not discard or rebuild the Printify product",
@@ -179,21 +180,140 @@
           "Do not shift the wrap placement",
           "Preserve artwork, product ID, variants, tags and all completed work"
         ],
-        "status": "QC override authorized in principle; publication still gated on the owner's explicit go after this economics check."
+        "status": "QC override authorized in principle; publication still gated on the owner's explicit go after this economics check.",
+        "override_grounds": [
+          "deterministic template geometry is correct",
+          "4065x2850 master matches the supplier placeholder exactly",
+          "artwork is placed 1:1",
+          "dedicated spine geometry is centered correctly",
+          "safe-area clearance passes",
+          "barcode reserve passes",
+          "reviewer passes disagreed on failure classification",
+          "no confirmed mechanical print defect exists",
+          "the blind tie-break reviewer is unavailable due to infrastructure/billing, not artwork failure"
+        ]
       },
-      "ready_for_qc_override": true
+      "ready_for_qc_override": true,
+      "published_at": "2026-09-09T23:34:20Z",
+      "post_publish_checks": {
+        "1_shipping_profile_readback": {
+          "shipping_profile_id": "315296887034",
+          "title": "Standard: District Photo, 1404, 485, 486, 2721, 2733, 2727,, 10664 , 10728 Paper prod..",
+          "us_primary_cost_usd": 6.19,
+          "us_secondary_cost_usd": 2.4,
+          "us_delivery_days": "2-5",
+          "origin_postal_code": "20705",
+          "everywhere_else_primary_usd": 14.59,
+          "result": "PASS"
+        },
+        "2_covers_fulfillment_shipping": {
+          "verified_printify_us_shipping_usd": 5.49,
+          "customer_charged_usd": 6.19,
+          "headroom_usd": 0.7,
+          "hard_stop_triggered": false,
+          "result": "PASS"
+        },
+        "3_merchandise_price": {
+          "expected_usd": 27.99,
+          "live_usd": 27.99,
+          "result": "PASS"
+        },
+        "4_variant": {
+          "variant_id": 65223,
+          "is_enabled": true,
+          "live_sku": "21022545934762042531",
+          "sku_matches_variant": true,
+          "result": "PASS"
+        },
+        "5_artwork_and_placement": {
+          "printify_image_id": "6aa1e800949bb8500c43a893",
+          "dimensions": "4065x2850",
+          "scale": 1,
+          "angle": 0,
+          "x": 0.5,
+          "y": 0.5,
+          "flipX": false,
+          "flipY": false,
+          "unchanged_since_pre_publish": true,
+          "result": "PASS"
+        },
+        "6_listing_fields": {
+          "title": "survived, Etsy HTML-escapes the apostrophe as &#39; which is normal encoding",
+          "tags": "13/13 survived, all within the 20-char cap",
+          "primary_media": "1 image at rank 1, listing_image_id 8549347861, 2048x2048",
+          "sku": "survived",
+          "state": "active",
+          "quantity": 999,
+          "production_partner": "NOT synced by Printify (known gotcha) - set by follow-up pass to US Print Network 5784598 and confirmed by fresh GET",
+          "patch_artifact": "the PATCH response returned skus:[] but a fresh GET confirms the SKU intact - response artifact, not data loss",
+          "result": "PASS"
+        },
+        "7_live_readback_verification": {
+          "readbacks": [
+            {
+              "label": "C",
+              "ts_utc": "2026-09-09T23:40:03Z",
+              "minutes_post_publish": 5.7,
+              "state": "active",
+              "price_usd": 27.99,
+              "shipping_profile_id": "315296887034",
+              "sku": "21022545934762042531",
+              "production_partner": "US Print Network 5784598",
+              "tags": 13,
+              "images": 1,
+              "last_modified_timestamp": 1788996927,
+              "clean": true
+            },
+            {
+              "label": "D",
+              "ts_utc": "2026-09-09T23:42:43Z",
+              "minutes_post_publish": 8.4,
+              "state": "active",
+              "price_usd": 27.99,
+              "shipping_profile_id": "315296887034",
+              "sku": "21022545934762042531",
+              "production_partner": "US Print Network 5784598",
+              "tags": 13,
+              "images": 1,
+              "last_modified_timestamp": 1788996927,
+              "clean": true
+            }
+          ],
+          "spacing_seconds": 160,
+          "identical": true,
+          "mockup_backfill_observed": "none - image count stayed at 1 and last_modified_timestamp never advanced across the full window",
+          "note": "Two earlier readbacks (23:35:40, 23:36:01) were only 21s apart and are NOT counted as the two consecutive spaced readbacks; C and D are.",
+          "result": "PASS"
+        }
+      },
+      "gallery": {
+        "images_on_listing": 1,
+        "listing_image_id": 8549347861,
+        "rank": 1,
+        "dimensions": "2048x2048",
+        "alt_text": "",
+        "classification": "SUPPLIER MOCKUP - empty alt_text is the supplier marker; premium uploads always carry alt text",
+        "premium_gallery_present": false,
+        "asset_gap": "The execution package delivered a production master only. No premium customer-facing Cloudinary stills were supplied for this product, so there is nothing to upload and nothing to replace the supplier mockup with.",
+        "action_taken": "Supplier mockup deliberately RETAINED. Deleting it would leave the listing with zero images, and gate v8 forbids generating replacement stills (a missing Cloudinary still is an ASSET GAP, not permission to spend credits).",
+        "gallery_status": "READY_FOR_PREMIUM_ASSETS",
+        "owner": "ChatGPT Creative - deliver premium Cloudinary stills for MM-20260909-004, then they upload to ranks 1-4 and the supplier mockup is deleted under the two-clean-readback rule"
+      },
+      "live_verified_at": "2026-09-09T23:42:43Z",
+      "all_post_publish_checks": "1-7 PASS"
     }
   ],
   "totals": {
     "approved": 1,
     "executed": 1,
-    "live_verified": 0,
+    "live_verified": 1,
     "gallery_blocked": 0,
     "hard_blocked": 0,
-    "qc_gate_blocked": 1,
-    "listings_produced": 0
+    "qc_gate_blocked": 0,
+    "listings_produced": 1,
+    "premium_gallery_outstanding": 1
   },
-  "queue_note": "Queue record deliberately left IN_PROGRESS, not COMPLETE and not FAILED. COMPLETE can never be reopened and would force an unnecessary recovery batch for a product that is one ruling away from publishing; FAILED is terminal and requires an external requeue. The record stays claimed and resumable, and is reported rather than silently reclaimed.",
+  "queue_note": "Batch complete. Queue record moved IN_PROGRESS -> COMPLETE. COMPLETE is never reopened: the outstanding premium gallery is recovered as a new batch with a new batch_id when ChatGPT Creative delivers the Cloudinary stills.",
   "system_gaps_for_dandre": [
     "OpenAI API credits are exhausted, so Make 6177794 (blind Reviewer 2) cannot run. This is the designated tie-breaker for REVIEW verdicts and its absence is what turned this into an owner decision.",
     "Package Queue Writer 6214135 supports only one production master per batch; a multi-asset batch cannot currently be delivered.",

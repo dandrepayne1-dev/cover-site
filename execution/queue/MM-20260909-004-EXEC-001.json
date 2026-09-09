@@ -1,7 +1,7 @@
 {
   "batch_id": "MM-20260909-004-EXEC-001",
   "mm_id": "MM-20260909-004",
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE",
   "attempt": 1,
   "written_at": "2026-09-09T23:04:40Z",
   "package_path": "execution/packages/MM-20260909-004-EXEC-001.json",
@@ -10,10 +10,11 @@
   "started_at": "2026-09-09T23:12:52Z",
   "preflight": "GO - 8/8 gates: queue PENDING, package parses and identifies MM-20260909-004, master SHA-256 verified byte-exact at 4065x2850/718491B, blueprint 485/provider 28/variant 65223 placeholder 4065x2850 confirmed live, US shipping 5.49 confirmed live",
   "result_path": "execution/results/MM-20260909-004-EXEC-001.json",
-  "blocked_at": "RENDER_QC_GATE",
-  "blocked_reason": "Economics resolved. Awaiting D'Andre explicit publish go under the QC override ruling. Artwork, product, variants and tags preserved unchanged.",
-  "blocked_at_ts": "2026-09-09T23:25:00Z",
   "note": "Deliberately NOT COMPLETE (never reopenable) and NOT FAILED (terminal). Claim retained so execution can resume at the publish step without a new batch_id.",
   "economics_check": "COMPLETE - shipping is CUSTOMER-PAID (verified via 10/10 Printify Etsy profiles and live listing 4572140458 at 10.39 US). Retail held at 27.99. 62.17% recorded as MERCHANDISE MARGIN on production cost only, excluding shipping and marketplace fees. ECONOMICS PASS.",
-  "ready_for_qc_override": "YES"
+  "completed_at": "2026-09-09T23:42:43Z",
+  "marketplace_listing_id": "4572325594",
+  "live_url": "https://www.etsy.com/listing/4572325594/the-poets-field-notes-vol-i-hardcover",
+  "final_status": "LIVE_VERIFIED",
+  "open_item": "Premium gallery assets not supplied; gallery dimension is READY_FOR_PREMIUM_ASSETS. Recover as a NEW batch_id - this record is COMPLETE and must never be reopened."
 }
