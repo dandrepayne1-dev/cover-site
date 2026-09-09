@@ -1,0 +1,10 @@
+{
+  "batch_id": "PHYSICAL-011-020",
+  "package_path": "execution/packages/2026-09-09-PHYSICAL-011-020.json",
+  "status": "IN_PROGRESS",
+  "written_at": "2026-09-09T16:30:00Z",
+  "started_at": "2026-09-09T16:30:00Z",
+  "completed_at": null,
+  "attempt": 1,
+  "result_path": null
+}

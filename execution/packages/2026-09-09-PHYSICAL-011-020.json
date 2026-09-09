@@ -1,0 +1,20 @@
+{
+  "batch_id": "PHYSICAL-011-020",
+  "captured_at": "2026-09-09T16:30:00Z",
+  "source": "Make scenario 6209561 (Commerce Machine Execution Gate) execution f9c325313efe4abfa2bf1e62ce7ecde2 @ 2026-09-09T09:54:37Z, corroborated by execution 3dd5fbb430384c0fb06705b0aa2b116b @ 2026-09-09T09:43:25Z",
+  "approver": "D'Andre Payne",
+  "workflow_version": "2026-09-09-v2",
+  "channel_instruction": "TikTok Shop first, Shopify mirror only, no Printify, Etsy only if eligible. Execute all 10, do not stop for routine adjustments.",
+  "products": [
+    { "product_id": "PHYSICAL-011", "cj_sku": "CJJT152986601AZ", "name": "3-in-1 Pop-Up Sink Stopper + Hair Catcher", "hero": "PHYSICAL-011_HERO.jpg" },
+    { "product_id": "PHYSICAL-012", "cj_sku": "CJCJ105384101AZ", "name": "12-in-1 Vegetable Chopper", "hero": "PHYSICAL-012_HERO.jpg" },
+    { "product_id": "PHYSICAL-013", "cj_sku": "CJYD205478501AZ", "name": "Pet Mist Grooming Self-Cleaning Brush", "hero": "PHYSICAL-013_HERO.jpg" },
+    { "product_id": "PHYSICAL-014", "cj_sku": "CJJT148225101AZ", "name": "Reusable Washable Pet-Hair Lint Roller", "hero": "PHYSICAL-014_HERO.jpg" },
+    { "product_id": "PHYSICAL-015", "cj_sku": "CJYD237778201AZ", "name": "Extra-Large Moving Storage Bag Bundle", "hero": "PHYSICAL-015_HERO.jpg" },
+    { "product_id": "PHYSICAL-016", "cj_sku": "CJXC103466701AZ", "name": "Extendable Snow Brush + Ice Scraper", "hero": "PHYSICAL-016_HERO.jpg" },
+    { "product_id": "PHYSICAL-017", "cj_sku": "CJKD156344101AZ", "name": "Pet-Friendly Plush Couch Protector", "hero": "PHYSICAL-017_HERO.jpg" },
+    { "product_id": "PHYSICAL-018", "cj_sku": "CJGY174846501AZ", "name": "Slow-Feeder Dog Bowl", "hero": "PHYSICAL-018_HERO.jpg" },
+    { "product_id": "PHYSICAL-019", "cj_sku": "CJJJCFCF00399", "name": "Flexible Drain Snake Hair Clog Grabber", "hero": "PHYSICAL-019_HERO.jpg" },
+    { "product_id": "PHYSICAL-020", "cj_sku": "CJYD219292101AZ", "name": "Rolling Magnetic Knife Sharpener", "hero": "PHYSICAL-020_HERO.jpg" }
+  ]
+}
