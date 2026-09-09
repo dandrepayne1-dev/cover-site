@@ -11,7 +11,9 @@
   "preflight": "GO - 8/8 gates: queue PENDING, package parses and identifies MM-20260909-004, master SHA-256 verified byte-exact at 4065x2850/718491B, blueprint 485/provider 28/variant 65223 placeholder 4065x2850 confirmed live, US shipping 5.49 confirmed live",
   "result_path": "execution/results/MM-20260909-004-EXEC-001.json",
   "blocked_at": "RENDER_QC_GATE",
-  "blocked_reason": "Render QC returned VERDICT=REVIEW twice (72 cover / 78 front). Package execution_rules[4] requires QC PASS to publish. All blocking defect classes named in execution_rules[3] verified absent by deterministic measurement. Awaiting D'Andre ruling; creative is locked so no redesign permitted.",
+  "blocked_reason": "Economics resolved. Awaiting D'Andre explicit publish go under the QC override ruling. Artwork, product, variants and tags preserved unchanged.",
   "blocked_at_ts": "2026-09-09T23:25:00Z",
-  "note": "Deliberately NOT COMPLETE (never reopenable) and NOT FAILED (terminal). Claim retained so execution can resume at the publish step without a new batch_id."
+  "note": "Deliberately NOT COMPLETE (never reopenable) and NOT FAILED (terminal). Claim retained so execution can resume at the publish step without a new batch_id.",
+  "economics_check": "COMPLETE - shipping is CUSTOMER-PAID (verified via 10/10 Printify Etsy profiles and live listing 4572140458 at 10.39 US). Retail held at 27.99. 62.17% recorded as MERCHANDISE MARGIN on production cost only, excluding shipping and marketplace fees. ECONOMICS PASS.",
+  "ready_for_qc_override": "YES"
 }

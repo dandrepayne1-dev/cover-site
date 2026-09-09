@@ -3,7 +3,7 @@
   "mm_id": "MM-20260909-004",
   "attempt": 1,
   "executed_at": "2026-09-09T23:25:00Z",
-  "batch_status": "BLOCKED_AT_QC_GATE",
+  "batch_status": "AWAITING_PUBLISH_GO",
   "products": [
     {
       "product": "THE POET'S FIELD NOTES - Vol. I - Hardcover Journal Matte (Lined)",
@@ -14,18 +14,17 @@
       "published": false,
       "marketplace_listing_id": null,
       "live_url": null,
-
       "preflight": "GO - 8/8 gates",
       "claim": "IN_PROGRESS attempt 1, committed before any commerce mutation (225f496)",
-
       "printify_product_id": "6aa1e815207d5d84e308d5fa",
       "blueprint_id": 485,
       "print_provider_id": 28,
       "print_provider": "District Photo",
-      "enabled_variants": [65223],
+      "enabled_variants": [
+        65223
+      ],
       "variant_title": "Journal",
       "decoration_method": "digital-printing",
-
       "economics_verified_live": {
         "production_cost_usd": 10.59,
         "package_reference_cost_usd": 10.59,
@@ -39,7 +38,6 @@
         "reprice_applied": false,
         "note": "Live economics re-read before publish per package instruction. No material change, so no reprice warranted."
       },
-
       "production_master": {
         "repo_path": "execution/assets/MM-20260909-004/the-poets-field-notes-vol-1-full-wrap-4065x2850.png",
         "pinned_commit": "f40f94ced65ed9ebe83e2810fa7d3df4494875f4",
@@ -52,7 +50,6 @@
         "placement": "scale 1, angle 0, x 0.5, y 0.5 - exact 1:1 fill of the 4065x2850 placeholder; the only mechanically possible placement",
         "creative_untouched": true
       },
-
       "render_qc": [
         {
           "pass": 1,
@@ -83,9 +80,7 @@
           "impact": "the independent tie-breaker that would resolve a REVIEW verdict is offline"
         }
       ],
-
       "qc_reviewer_conflict": "The two passes contradict each other on root cause: pass 1 blames the artwork (DESIGN_SYSTEM_FAILURE), pass 2 blames the placement (PRINT_PLACEMENT_FAILURE) while scoring orientation 10/10. Only one placement is mechanically possible, so 'adjust vertical placement' is not an available action and would break wrap registration.",
-
       "deterministic_geometry_verification": {
         "method": "pixel measurement of the locked master against the supplier placeholder; performed because images.printify.com is proxy-blocked (CONNECT 403, policy denial) so the render could not be inspected directly",
         "derived_dpi": 337.9,
@@ -112,7 +107,6 @@
         },
         "conclusion": "No mechanical geometry or trim conflict exists between Printify's placeholder and the locked master. Pass 1's 'split across spine seam' finding is factually contradicted by the master, which reserves a dedicated spine panel and keeps front/back content 1.92 in clear of the fold."
       },
-
       "upstream_work_completed": [
         "master transported and byte-verified against pinned commit",
         "supplier blueprint/provider/variant reconfirmed live via the API used for execution",
@@ -121,28 +115,75 @@
         "artwork attached at exact 1:1 placement and readback-verified",
         "13 Etsy tags set and readback-verified, all within the 20-character cap"
       ],
-
       "mechanical_corrections_applied": [
         "Package tag 'dark academia journal' is 21 characters and would be silently rejected by Etsy's 20-character cap. Shortened to 'dark academia', preserving the search term. Factual SKU/channel-constraint correction only; no creative change."
       ],
-
       "non_blocking_findings": [
         "Printify reports 718473 bytes for the uploaded master vs 718491 at source - an 18-byte delta consistent with ancillary PNG chunk stripping (the source carries a bKGD chunk). Dimensions, CRCs and visual content verified intact; not corruption.",
         "images.printify.com returns CONNECT 403 through the agent proxy (policy denial), so supplier renders cannot be inspected locally. Render QC runs server-side in Make and is unaffected.",
         "Make 6177780 has an empty output interface; its verdict must be read from the PRODUCT_RENDER_QC sheet tab, not from the execution detail.",
         "sales_channel_properties reads empty pre-publish, as expected."
       ],
-
-      "remaining_blocker": "Render QC returned REVIEW (not PASS) twice, and the immutable package conditions publication on QC PASS. Every blocking defect class the package itself names is verified absent by measurement, and the artwork is creative-locked so no redesign is permitted. This needs D'Andre's ruling, not a creative change.",
-
+      "remaining_blocker": "None on economics. Awaiting D'Andre's explicit publish go following the QC override ruling.",
       "decision_required_from_dandre": {
         "option_a": "Treat the measured verification as satisfying the gate and publish as-is. Nothing further is needed - the product is one step from live.",
         "option_b": "Return the spine/wrap question to ChatGPT Creative for an aesthetic revision. Note this contradicts the FINAL-APPROVED creative lock.",
         "recommendation": "Option A. The gate's own enumerated blocking classes (trim, orientation, title-safety, barcode, wrap) are all measurably clear with 2.8x to 8x safe-area margin, the reviewer never returned REWORK, and its two passes disagree on root cause. Restoring OpenAI credits would also bring the blind second reviewer back online to break future ties automatically."
-      }
+      },
+      "shipping_and_economics_check": {
+        "checked_at": "2026-09-09T23:32:00Z",
+        "question": "Is Etsy shipping customer-paid separately, or free/included in the retail price?",
+        "determination": "CUSTOMER-PAID",
+        "method": "Read all 10 Printify-created Etsy shipping profiles on shop 67844439, then confirmed against a live listing produced by this exact pipeline.",
+        "evidence": {
+          "profiles_on_shop": 10,
+          "profiles_with_zero_us_cost": 0,
+          "us_primary_cost_range_usd": "4.95 - 13.49",
+          "positive_control": {
+            "listing_id": 4572140458,
+            "product": "CORE-024 Book Lover Blanket",
+            "merchandise_price_usd": 49.99,
+            "shipping_profile_id": 315224723170,
+            "us_primary_cost_charged_to_buyer_usd": 10.39,
+            "us_secondary_cost_usd": 4.49,
+            "printify_fulfillment_shipping_usd": 8.39,
+            "markup_over_fulfillment_cost_usd": 2.0,
+            "conclusion": "Printify sets the Etsy customer shipping charge ABOVE its own fulfillment shipping cost. It does not absorb shipping into the merchandise price."
+          }
+        },
+        "decision_rule_applied": "Branch 1 - customer is charged shipping separately, so merchandise retail stays at 27.99. No reprice.",
+        "final_retail_usd": 27.99,
+        "reprice_applied": false,
+        "margin_classification": {
+          "value_pct": 62.17,
+          "type": "MERCHANDISE MARGIN",
+          "basis": "(27.99 retail - 10.59 production cost) / 27.99 retail",
+          "explicitly_excludes": "the 5.49 US fulfillment shipping (recovered separately from the buyer) AND all Etsy marketplace fees (listing, transaction, payment processing, offsite ads). This figure is NOT margin after shipping and fees.",
+          "floor_test": "55% pre-marketplace-fee gross margin floor - PASS with 7.2 points of headroom"
+        },
+        "counterfactual_recorded": {
+          "if_shipping_were_free_included_at_27.99": "42.55% - would breach the 55% floor, which is why branch 2 exists",
+          "if_repriced_to_35.99_with_free_shipping": "55.32% - clears the floor",
+          "note": "Branch 2 was not triggered. Flagging for the record only: 35.99 would cross the common Etsy 35.00 free-shipping-guarantee threshold, so if that shop setting is ever enabled, a 35.99 price could itself convert shipping to free and re-open this question."
+        },
+        "residual_to_verify_at_publish": "Blueprint 485 has no Etsy shipping profile yet; Printify creates or assigns one at publish. The blanket precedent above shows Printify sets it at or above its own fulfillment shipping cost, so 5.49 is expected to be covered. The created profile's actual US primary cost will be read back and confirmed >= 5.49 before LIVE_VERIFIED is declared.",
+        "economics_verdict": "PASS"
+      },
+      "qc_resolution": {
+        "ruling_by": "DAndre",
+        "ruling": "Render-QC result treated as an INCONCLUSIVE REVIEW, not a confirmed artwork defect. QC-system failure, not a production defect.",
+        "directives": [
+          "Do not redesign the journal",
+          "Do not discard or rebuild the Printify product",
+          "Do not send the artwork back through creative",
+          "Do not shift the wrap placement",
+          "Preserve artwork, product ID, variants, tags and all completed work"
+        ],
+        "status": "QC override authorized in principle; publication still gated on the owner's explicit go after this economics check."
+      },
+      "ready_for_qc_override": true
     }
   ],
-
   "totals": {
     "approved": 1,
     "executed": 1,
@@ -152,9 +193,7 @@
     "qc_gate_blocked": 1,
     "listings_produced": 0
   },
-
   "queue_note": "Queue record deliberately left IN_PROGRESS, not COMPLETE and not FAILED. COMPLETE can never be reopened and would force an unnecessary recovery batch for a product that is one ruling away from publishing; FAILED is terminal and requires an external requeue. The record stays claimed and resumable, and is reported rather than silently reclaimed.",
-
   "system_gaps_for_dandre": [
     "OpenAI API credits are exhausted, so Make 6177794 (blind Reviewer 2) cannot run. This is the designated tie-breaker for REVIEW verdicts and its absence is what turned this into an owner decision.",
     "Package Queue Writer 6214135 supports only one production master per batch; a multi-asset batch cannot currently be delivered.",
