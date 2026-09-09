@@ -15,6 +15,7 @@
   "completed_at": "2026-09-09T23:42:43Z",
   "marketplace_listing_id": "4572325594",
   "live_url": "https://www.etsy.com/listing/4572325594/the-poets-field-notes-vol-i-hardcover",
-  "final_status": "LIVE_VERIFIED",
-  "open_item": "Premium gallery assets not supplied; gallery dimension is READY_FOR_PREMIUM_ASSETS. Recover as a NEW batch_id - this record is COMPLETE and must never be reopened."
+  "final_status": "LIVE / ASSET_INCOMPLETE",
+  "open_item": "Listing 4572325594 is LIVE but ASSET_INCOMPLETE - premium gallery not yet delivered by ChatGPT Creative. Listing structure frozen: no unpublish, no price/shipping/SKU/artwork change.",
+  "status_note": "Queue record stays COMPLETE: it tracks the publish batch, which finished. It is NOT a claim that the listing is finished. COMPLETE is never reopened - the premium gallery install runs as a NEW batch_id."
 }

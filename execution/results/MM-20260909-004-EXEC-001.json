@@ -3,11 +3,11 @@
   "mm_id": "MM-20260909-004",
   "attempt": 1,
   "executed_at": "2026-09-09T23:25:00Z",
-  "batch_status": "COMPLETE",
+  "batch_status": "PUBLISH_BATCH_COMPLETE / LISTING_ASSET_INCOMPLETE",
   "products": [
     {
       "product": "THE POET'S FIELD NOTES - Vol. I - Hardcover Journal Matte (Lined)",
-      "status": "LIVE_VERIFIED",
+      "status": "LIVE / ASSET_INCOMPLETE",
       "blocked_at": null,
       "blocking_rule": "package execution_rules[4]: 'Publish only after QC PASS.' Render QC returned VERDICT=REVIEW on both passes. REVIEW is neither PASS nor REWORK.",
       "marketplace": "Etsy (Printify shop 28809600 'My Etsy Store')",
@@ -300,18 +300,74 @@
         "owner": "ChatGPT Creative - deliver premium Cloudinary stills for MM-20260909-004, then they upload to ranks 1-4 and the supplier mockup is deleted under the two-clean-readback rule"
       },
       "live_verified_at": "2026-09-09T23:42:43Z",
-      "all_post_publish_checks": "1-7 PASS"
+      "all_post_publish_checks": "1-7 PASS for listing structure only; gallery dimension not satisfied",
+      "status_correction": {
+        "corrected_at": "2026-09-09T23:50:00Z",
+        "corrected_by": "DAndre",
+        "previous_label": "LIVE_VERIFIED",
+        "why_previous_label_was_wrong": "The GALLERY STANDARD requires a premium gallery present for LIVE_VERIFIED. This listing carries a supplier mockup as its customer-facing media, so LIVE_VERIFIED was not earned. The asset gap was reported but the status label did not reflect it.",
+        "root_cause": "UPSTREAM HANDOFF FAILURE - the listing was published before the required premium listing asset package was delivered.",
+        "correct_label": "LIVE / ASSET_INCOMPLETE"
+      },
+      "listing_is_live_and_correct": {
+        "state": "active",
+        "retail_usd": 27.99,
+        "variant": 65223,
+        "sku": "21022545934762042531",
+        "shipping_profile_id": "315296887034",
+        "us_shipping_usd": 6.19,
+        "production_partner": "US Print Network 5784598",
+        "artwork": "unchanged - image 6aa1e800949bb8500c43a893, 4065x2850, scale 1, angle 0",
+        "note": "Structure verified and frozen. Not to be unpublished or altered."
+      },
+      "hold_directive": {
+        "issued_by": "DAndre",
+        "issued_at": "2026-09-09T23:50:00Z",
+        "do_not": [
+          "unpublish",
+          "change price",
+          "change shipping",
+          "change SKU",
+          "change or redesign artwork",
+          "regenerate or substitute any creative"
+        ],
+        "do": [
+          "hold the live product/listing structure in place",
+          "wait for a new asset package from ChatGPT Creative"
+        ]
+      },
+      "awaiting_asset_package": {
+        "owner": "ChatGPT Creative",
+        "mm_id": "MM-20260909-004",
+        "must_contain": [
+          "3-4 premium listing visuals",
+          "intended gallery order",
+          "alt text for each image"
+        ],
+        "on_receipt_procedure": [
+          "1. Upload the premium images to Etsy listing 4572325594 (Make 6174371)",
+          "2. Set the strongest premium image as rank 1 hero",
+          "3. Place remaining premium images in ranks 2-4",
+          "4. Retain or remove supplier mockup 8549347861 on final gallery quality judgment (Make 6205433)",
+          "5. Add alt text to every premium image",
+          "6. Fresh readbacks - two consecutive clean, properly spaced",
+          "7. Report image count, hero confirmed, alt text status, live check, final status"
+        ],
+        "completion_rule": "This listing is NOT fully complete until the premium gallery is installed and verified.",
+        "batch_id_rule": "The gallery work runs as a NEW batch_id. Queue record MM-20260909-004-EXEC-001 is COMPLETE and must never be reopened - reopening risks republishing the listing."
+      }
     }
   ],
   "totals": {
     "approved": 1,
     "executed": 1,
-    "live_verified": 1,
+    "live_verified": 0,
     "gallery_blocked": 0,
     "hard_blocked": 0,
     "qc_gate_blocked": 0,
     "listings_produced": 1,
-    "premium_gallery_outstanding": 1
+    "premium_gallery_outstanding": 1,
+    "live_asset_incomplete": 1
   },
   "queue_note": "Batch complete. Queue record moved IN_PROGRESS -> COMPLETE. COMPLETE is never reopened: the outstanding premium gallery is recovered as a new batch with a new batch_id when ChatGPT Creative delivers the Cloudinary stills.",
   "system_gaps_for_dandre": [
