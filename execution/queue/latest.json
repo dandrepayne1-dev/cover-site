@@ -1,1 +1,1 @@
-{"batch_id":"RECOVERY-CORE-026-PORTRAIT-002","queue_path":"execution/queue/RECOVERY-CORE-026-PORTRAIT-002.json","package_path":"execution/packages/RECOVERY-CORE-026-PORTRAIT-002.json","status":"COMPLETE","note":"Convenience pointer only, never authoritative. Repointed from TEST-ASSET-ATOMIC-002 (an infra test) to the last real commerce batch."}
+{"batch_id":"MM-20260909-004-EXEC-001","status":"PENDING","written_at":"2026-09-09T22:54:15Z","queue_path":"execution/queue/MM-20260909-004-EXEC-001.json"}
