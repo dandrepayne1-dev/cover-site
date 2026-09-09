@@ -5,75 +5,190 @@
   "outcome": "3 of 6 products LIVE_VERIFIED on Etsy with premium-only galleries. 3 products stopped by a hard resource limit: the Higgsfield credit balance was exhausted (41.06 credits at start, 5.06 remaining). Buying credits is a payment action and is reserved for D'Andre, so those three were not built rather than shipped with supplier mockups or degraded creative.",
   "products": [
     {
-      "product_id": "CORE-021", "status": "LIVE_VERIFIED", "marketplace": "etsy", "fulfillment": "printify",
-      "retail": "21.99 (30x36) / 29.99 (30x72)", "cost": "8.21 / 10.87", "margin_pct": "62.7 / 63.8",
-      "listing_id": "4572126493", "live_url": "https://www.etsy.com/listing/4572126493/vintage-christmas-wrapping-paper-retro",
+      "product_id": "CORE-021",
+      "status": "LIVE_VERIFIED",
+      "marketplace": "etsy",
+      "fulfillment": "printify",
+      "retail": "21.99 (30x36) / 29.99 (30x72)",
+      "cost": "8.21 / 10.87",
+      "margin_pct": "62.7 / 63.8",
+      "listing_id": "4572126493",
+      "live_url": "https://www.etsy.com/listing/4572126493/vintage-christmas-wrapping-paper-retro",
       "printify_product_id": "6aa1a2d687017fb4a7059aa9",
-      "blueprint_id": 1367, "print_provider_id": 1, "provider": "SPOKE Custom Products",
-      "variants_enabled": [102987, 102988, 102989, 102990], "variants_disabled": [102991, 102992],
-      "art_image_id": "6aa1a2bd36cc05bb23a1de1d", "art_px": "3712x4608", "print_area_px": "9075x10800", "approx_dpi_at_30in": 124,
-      "gallery": "premium_only", "gallery_detail": "4 premium images at ranks 1-4, all alt-texted; 12 Printify supplier mockups deleted across repeated injection waves",
-      "tags_set": 13, "production_partner": "US Print Network 5784598",
-      "autonomous_changes": ["resolved blueprint/provider/variants from null via Printify API", "priced 21.99/29.99 against real cost for 62-64% margin", "disabled the 30x180 variants as poor economics"],
+      "blueprint_id": 1367,
+      "print_provider_id": 1,
+      "provider": "SPOKE Custom Products",
+      "variants_enabled": [
+        102987,
+        102988,
+        102989,
+        102990
+      ],
+      "variants_disabled": [
+        102991,
+        102992
+      ],
+      "art_image_id": "6aa1a2bd36cc05bb23a1de1d",
+      "art_px": "3712x4608",
+      "print_area_px": "9075x10800",
+      "approx_dpi_at_30in": 124,
+      "gallery": "premium_only",
+      "gallery_detail": "4 premium images at ranks 1-4, all alt-texted; 12 Printify supplier mockups deleted across repeated injection waves",
+      "tags_set": 13,
+      "production_partner": "US Print Network 5784598",
+      "autonomous_changes": [
+        "resolved blueprint/provider/variants from null via Printify API",
+        "priced 21.99/29.99 against real cost for 62-64% margin",
+        "disabled the 30x180 variants as poor economics"
+      ],
       "blocker": null
     },
     {
-      "product_id": "CORE-022", "status": "LIVE_VERIFIED", "marketplace": "etsy", "fulfillment": "printify",
-      "retail": "24.99 (11oz) / 29.99 (15oz)", "cost": "7.35 / 8.38", "margin_pct": "70.6 / 72.1",
-      "listing_id": "4572148424", "live_url": "https://www.etsy.com/listing/4572148424/cozy-reading-club-mug-black-book-lover",
+      "product_id": "CORE-022",
+      "status": "LIVE_VERIFIED",
+      "marketplace": "etsy",
+      "fulfillment": "printify",
+      "retail": "24.99 (11oz) / 29.99 (15oz)",
+      "cost": "7.35 / 8.38",
+      "margin_pct": "70.6 / 72.1",
+      "listing_id": "4572148424",
+      "live_url": "https://www.etsy.com/listing/4572148424/cozy-reading-club-mug-black-book-lover",
       "printify_product_id": "6aa1a492c31539ee0a0d1260",
-      "blueprint_id": 479, "blueprint": "Black Mug (11oz, 15oz)", "print_provider_id": 99, "provider": "Printify Choice",
-      "variants_enabled": [65217, 104470],
-      "art_image_id": "6aa1a4851d34f60b14c145ae", "art_px": "6336x2688", "print_area_px": "2327x1086", "resolution_headroom": "2.7x",
+      "blueprint_id": 479,
+      "blueprint": "Black Mug (11oz, 15oz)",
+      "print_provider_id": 99,
+      "provider": "Printify Choice",
+      "variants_enabled": [
+        65217,
+        104470
+      ],
+      "art_image_id": "6aa1a4851d34f60b14c145ae",
+      "art_px": "6336x2688",
+      "print_area_px": "2327x1086",
+      "resolution_headroom": "2.7x",
       "visual_qc": "Make 6177658 ARTWORK RUBRIC-v1.1: TOTAL=87 VERDICT=PASS CONFIDENCE=HIGH, TEXTISSUES=None typography is excellent, DEFECTS=None observed. Stopped at PASS per operating rule.",
-      "gallery": "premium_only", "gallery_detail": "4 premium images at ranks 1-4, all alt-texted; 14 Printify supplier mockups deleted across repeated injection waves",
-      "tags_set": 13, "production_partner": "US Print Network 5784598",
-      "autonomous_changes": ["resolved black mug blueprint 479 (package left it null; blueprint 478 rejected as it has no black option)", "priced 24.99/29.99 vs 27.99 target for competitiveness at 70%+ margin"],
+      "gallery": "premium_only",
+      "gallery_detail": "4 premium images at ranks 1-4, all alt-texted; 14 Printify supplier mockups deleted across repeated injection waves",
+      "tags_set": 13,
+      "production_partner": "US Print Network 5784598",
+      "autonomous_changes": [
+        "resolved black mug blueprint 479 (package left it null; blueprint 478 rejected as it has no black option)",
+        "priced 24.99/29.99 vs 27.99 target for competitiveness at 70%+ margin"
+      ],
       "blocker": null
     },
     {
-      "product_id": "CORE-023", "status": "EXECUTION_BLOCKED", "marketplace": "etsy", "fulfillment": "printify",
-      "retail": null, "cost": null, "listing_id": null, "live_url": null,
-      "blueprint_id": 976, "blueprint": "Garden & House Banner", "print_provider_id": 92, "provider": "Pic The Gift",
-      "variant_id": 78842, "variant": "24.5in x 32in house banner", "print_area_px": "7800x10012", "supplier_state": "API_VERIFIED",
+      "product_id": "CORE-023",
+      "status": "EXECUTION_BLOCKED",
+      "marketplace": "etsy",
+      "fulfillment": "printify",
+      "retail": null,
+      "cost": null,
+      "listing_id": null,
+      "live_url": null,
+      "blueprint_id": 976,
+      "blueprint": "Garden & House Banner",
+      "print_provider_id": 92,
+      "provider": "Pic The Gift",
+      "variant_id": 78842,
+      "variant": "24.5in x 32in house banner",
+      "print_area_px": "7800x10012",
+      "supplier_state": "API_VERIFIED",
       "gallery": null,
-      "blocker": "Higgsfield credits exhausted before production art could be generated. Substrate fully resolved and verified; needs ~12 credits to complete (4 production art at 4k + 8 for the four-image premium gallery)."
+      "blocker": "Higgsfield credits exhausted before production art could be generated. Superseded by gate v8: this is an ASSET GAP, not a credit problem. ChatGPT creates the stills and uploads them to Cloudinary; Claude Code must not spend Higgsfield credits on routine stills."
     },
     {
-      "product_id": "CORE-024", "status": "LIVE_VERIFIED", "marketplace": "etsy", "fulfillment": "printify",
-      "retail": 49.99, "cost": 20.91, "us_shipping": 8.39, "margin_pct": 58.2,
-      "listing_id": "4572140458", "live_url": "https://www.etsy.com/listing/4572140458/book-lover-blanket-cozy-reading-nook",
+      "product_id": "CORE-024",
+      "status": "LIVE_VERIFIED",
+      "marketplace": "etsy",
+      "fulfillment": "printify",
+      "retail": 49.99,
+      "cost": 20.91,
+      "us_shipping": 8.39,
+      "margin_pct": 58.2,
+      "listing_id": "4572140458",
+      "live_url": "https://www.etsy.com/listing/4572140458/book-lover-blanket-cozy-reading-nook",
       "printify_product_id": "6aa1a19e1a6a142b3b059af7",
-      "blueprint_id": 522, "print_provider_id": 99, "provider": "Printify Choice", "variant_id": 68323,
-      "art_image_id": "6aa1a16a467e716983a17a57", "art_px": "3311x4096", "print_area_px": "7825x9325", "approx_dpi_at_50in": 66,
-      "gallery": "premium_only", "gallery_detail": "4 premium images all alt-texted at ranks 1,2,3,5; 1 supplier mockup deleted. Rank numbering is non-consecutive because Etsy does not renumber after deletion; customer-facing display order is correct.",
-      "tags_set": 13, "production_partner": "US Print Network 5784598",
-      "autonomous_changes": ["verified bp522/pp99/v68323 still optimal", "repriced 44.99 -> 49.99 to reach the preferred 55-65% band"],
+      "blueprint_id": 522,
+      "print_provider_id": 99,
+      "provider": "Printify Choice",
+      "variant_id": 68323,
+      "art_image_id": "6aa1a16a467e716983a17a57",
+      "art_px": "3311x4096",
+      "print_area_px": "7825x9325",
+      "approx_dpi_at_50in": 66,
+      "gallery": "premium_only",
+      "gallery_detail": "4 premium images all alt-texted at ranks 1,2,3,5; 1 supplier mockup deleted. Rank numbering is non-consecutive because Etsy does not renumber after deletion; customer-facing display order is correct.",
+      "tags_set": 13,
+      "production_partner": "US Print Network 5784598",
+      "autonomous_changes": [
+        "verified bp522/pp99/v68323 still optimal",
+        "repriced 44.99 -> 49.99 to reach the preferred 55-65% band"
+      ],
       "blocker": null,
-      "quality_note": "Higgsfield output caps near 4096px, so art is ~66 DPI against the 50x60in print area. Acceptable for large-format dye-sublimation at viewing distance but below a 150 DPI ideal; recorded rather than hidden."
+      "quality_note": "Higgsfield output caps near 4096px, so art is ~66 DPI against the 50x60in print area. Acceptable for large-format dye-sublimation at viewing distance but below a 150 DPI ideal; recorded rather than hidden.",
+      "owner_decision": "Leave the print master as-is. Revisit only if the product starts selling."
     },
     {
-      "product_id": "CORE-025", "status": "EXECUTION_BLOCKED", "marketplace": "etsy", "fulfillment": "printify",
-      "retail": null, "cost": 8.93, "listing_id": null, "live_url": null,
-      "blueprint_id": 2732, "blueprint": "Waffle Weave Kitchen Hand Towel", "print_provider_id": 92, "provider": "Pic The Gift",
-      "variant_id": 149001, "variant": "16in x 25in", "print_area_px": "5400x8100", "supplier_state": "API_VERIFIED",
+      "product_id": "CORE-025",
+      "status": "EXECUTION_BLOCKED",
+      "marketplace": "etsy",
+      "fulfillment": "printify",
+      "retail": null,
+      "cost": 8.93,
+      "listing_id": null,
+      "live_url": null,
+      "blueprint_id": 2732,
+      "blueprint": "Waffle Weave Kitchen Hand Towel",
+      "print_provider_id": 92,
+      "provider": "Pic The Gift",
+      "variant_id": 149001,
+      "variant": "16in x 25in",
+      "print_area_px": "5400x8100",
+      "supplier_state": "API_VERIFIED",
       "gallery": null,
-      "blocker": "Higgsfield credits exhausted before production art could be generated. Real cost 8.93 already confirmed from the existing live CORE-005 product on the identical variant.",
-      "originality_flag": "RAISED FOR D'ANDRE. The approved brief for CORE-025 is a vintage ghost chef Halloween kitchen towel on blueprint 2732/provider 92/variant 149001. The shop ALREADY has 'Halloween Kitchen Towel, Vintage Ghost Chef' (CORE-005, Etsy listing 4571666502, Printify 6aa0b247fb54b4ab9a0dfe15) live on the identical substrate with the identical subject. Publishing this as briefed would put a near-duplicate of our own live listing on Etsy. Under the originality gate a self-duplicate fails the swap and market-analogue tests, and a technical PASS with an originality FAIL does not publish. This needs a differentiated concept from ChatGPT, not a Claude-invented one."
+      "blocker": "Higgsfield credits exhausted before production art could be generated. Superseded by gate v8: this is an ASSET GAP, not a credit problem. ChatGPT creates the stills and uploads them to Cloudinary; Claude Code must not spend Higgsfield credits on routine stills.",
+      "originality_flag": "RAISED FOR D'ANDRE. The approved brief for CORE-025 is a vintage ghost chef Halloween kitchen towel on blueprint 2732/provider 92/variant 149001. The shop ALREADY has 'Halloween Kitchen Towel, Vintage Ghost Chef' (CORE-005, Etsy listing 4571666502, Printify 6aa0b247fb54b4ab9a0dfe15) live on the identical substrate with the identical subject. Publishing this as briefed would put a near-duplicate of our own live listing on Etsy. Under the originality gate a self-duplicate fails the swap and market-analogue tests, and a technical PASS with an originality FAIL does not publish. This needs a differentiated concept from ChatGPT, not a Claude-invented one.",
+      "originality_flag_resolution": "RESOLVED by D'Andre: replaced with the OCTOBER BAKING CLUB concept. Still approved; no re-approval required."
     },
     {
-      "product_id": "CORE-026", "status": "EXECUTION_BLOCKED", "marketplace": "etsy", "fulfillment": "printify",
-      "retail": null, "cost": null, "listing_id": null, "live_url": null,
-      "blueprint_id": 951, "blueprint": "Can Cooler", "print_provider_id": 92, "provider": "Pic The Gift",
-      "variants": [{"id": 78460, "title": "Regular Can", "print_area_px": "1425x3300"}, {"id": 78461, "title": "Slim Can", "print_area_px": "1382x4161"}],
-      "supplier_state": "API_VERIFIED", "gallery": null,
-      "blocker": "Higgsfield credits exhausted before production art could be generated. Substrate resolved; both can sizes available to form the approved 'collection'.",
+      "product_id": "CORE-026",
+      "status": "EXECUTION_BLOCKED",
+      "marketplace": "etsy",
+      "fulfillment": "printify",
+      "retail": null,
+      "cost": null,
+      "listing_id": null,
+      "live_url": null,
+      "blueprint_id": 951,
+      "blueprint": "Can Cooler",
+      "print_provider_id": 92,
+      "provider": "Pic The Gift",
+      "variants": [
+        {
+          "id": 78460,
+          "title": "Regular Can",
+          "print_area_px": "1425x3300"
+        },
+        {
+          "id": 78461,
+          "title": "Slim Can",
+          "print_area_px": "1382x4161"
+        }
+      ],
+      "supplier_state": "API_VERIFIED",
+      "gallery": null,
+      "blocker": "Higgsfield credits exhausted before production art could be generated. Superseded by gate v8: this is an ASSET GAP, not a credit problem. ChatGPT creates the stills and uploads them to Cloudinary; Claude Code must not spend Higgsfield credits on routine stills.",
       "pricing_note": "Package carried null retail and null modeled cost. Per the pricing-authority rule this is not an owner decision; retail will be set from live base cost plus US shipping at execution time."
     }
   ],
   "totals": {
-    "approved": 6, "executed": 3, "live_verified": 3,
-    "gallery_blocked": 0, "hard_blocked": 3, "listings_produced": 3
+    "approved": 6,
+    "executed": 3,
+    "live_verified": 3,
+    "gallery_blocked": 0,
+    "hard_blocked": 3,
+    "listings_produced": 3
   },
   "resource_accounting": {
     "higgsfield_credits_at_start": 41.06,
@@ -93,8 +208,61 @@
     "Printify keeps injecting supplier mockups into an Etsy listing asynchronously for several minutes after publish, backfilling every slot freed by a deletion. Reaching a premium-only gallery took repeated delete-and-verify sweeps: 1 mockup for the blanket, 12 for the wrapping paper, 14 for the mug. A single post-publish cleanup pass is not sufficient.",
     "Make scenario 6209505 (CJ Freight Quick Quote) requires a CJ Access Token this session does not hold."
   ],
-  "requeue_requirements": [
-    "Top up Higgsfield credits (about 36 credits to finish CORE-023, CORE-025 and CORE-026 at the same quality), then requeue those three as a new batch",
-    "ChatGPT to supply a differentiated concept for CORE-025 that does not duplicate the live CORE-005 ghost chef towel, or D'Andre to confirm the duplicate is intended"
-  ]
+  "recovery_plan": {
+    "protocol": "This queue record is COMPLETE and must NEVER be reopened, reset or requeued. CORE-023, CORE-025 and CORE-026 are recovered as a NEW recovery batch with a NEW batch_id, written by the upstream Make writer 6214135.",
+    "owner_decisions_2026-09-09": [
+      "Do NOT top up Higgsfield to finish these products. Topping up would reinforce the wrong workflow. ChatGPT creates the remaining stills and uploads them to Cloudinary; Claude Code consumes those assets. Higgsfield cost for the three routine still galleries: 0 credits.",
+      "CORE-021, CORE-022 and CORE-024 stay live as published. No changes.",
+      "CORE-024 blanket art stays at ~66 DPI for now. Zero sales signal, so the print master is upgraded only if the product starts moving.",
+      "CORE-023 and CORE-026 remain approved. They need the new asset path only, not another product approval.",
+      "CORE-025 receives a replacement concept from D'Andre (see core_025_replacement_concept). No re-approval needed."
+    ],
+    "recovery_batch_contents": [
+      "CORE-023",
+      "CORE-025",
+      "CORE-026"
+    ],
+    "flow": "D'Andre/ChatGPT create stills -> upload to Cloudinary -> new recovery package with secure_url/public_id per asset -> Make 6214135 -> Claude Code -> listings -> repeated gallery verification to two consecutive clean readbacks",
+    "carry_forward_for_the_recovery_package": {
+      "CORE-023": {
+        "blueprint_id": 976,
+        "print_provider_id": 92,
+        "variant_id": 78842,
+        "variant": "24.5in x 32in house banner",
+        "print_area_px": "7800x10012",
+        "supplier_state": "API_VERIFIED"
+      },
+      "CORE-025": {
+        "blueprint_id": 2732,
+        "print_provider_id": 92,
+        "variant_id": 149001,
+        "variant": "16in x 25in",
+        "print_area_px": "5400x8100",
+        "confirmed_cost_usd": 8.93,
+        "supplier_state": "API_VERIFIED"
+      },
+      "CORE-026": {
+        "blueprint_id": 951,
+        "print_provider_id": 92,
+        "variants": [
+          78460,
+          78461
+        ],
+        "variant_titles": [
+          "Regular Can 1425x3300",
+          "Slim Can 1382x4161"
+        ],
+        "supplier_state": "API_VERIFIED",
+        "pricing": "set from live base cost + US shipping at execution time; not an owner decision"
+      }
+    }
+  },
+  "core_025_replacement_concept": {
+    "resolves": "the originality flag raised against the live CORE-005 ghost chef towel",
+    "approved_by": "D'Andre, 2026-09-09",
+    "concept": "OCTOBER BAKING CLUB",
+    "direction": "Vintage mid-century fall cookbook aesthetic. Black cat beside an apple pie; rolling pin, apples, cinnamon. Palette cream + charcoal + rust + muted sage. Strong retro typography. No ghost chef, so it is materially different from CORE-005.",
+    "note": "Concept is the owner's. Claude Code does not modify or substitute it."
+  },
+  "gate_version_at_completion": "run under v5; superseded by v8 the same day"
 }

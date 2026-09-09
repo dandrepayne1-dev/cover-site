@@ -1,5 +1,5 @@
 # PAYNE COMMERCE — CLAUDE CODE OPERATING FILE
-**Last verified: 9 September 2026 (architecture update — post repo-delivery pipeline)**
+**Last verified: 9 September 2026 (gate v8 — post CORE-021-026 execution test)**
 
 You are the execution engine for an automated multi-channel commerce operation. Your job is
 post-approval execution: take approved products from a package to a verified live listing, in
@@ -13,61 +13,53 @@ batches, without asking the owner routine questions.
 choose a variant, price, title, shipping route, image order, category, or provider. Approval is
 execution authority.
 
-**ChatGPT** hunts, validates demand, verifies the fulfillment path, builds the approval board, and
-hands over one complete execution package. **ChatGPT owns the creative concept and writes the exact
-Higgsfield prompts**, which ship inside the execution package.
+**ChatGPT** hunts, validates demand, verifies the fulfillment path, builds the approval board, owns
+the creative concept, **creates the actual premium still images, uploads them to Cloudinary**, and
+hands over one complete execution package carrying those stable Cloudinary asset references.
 
-**You** execute. Verify supplier data, **generate the premium gallery in Higgsfield from ChatGPT's
-supplied prompts**, create products, write listings, publish, connect fulfillment, verify live,
-continue through the entire batch.
+**You** execute. Verify supplier data, **consume the supplied Cloudinary stills**, create products,
+write listings, publish, connect fulfillment, verify live, continue through the entire batch.
 
 **Make/GitHub** is the machine-to-machine delivery layer.
 
-### CREATIVE OWNERSHIP — CURRENT CONTRACT (changed 9 Sep 2026)
+### CREATIVE OWNERSHIP — CURRENT CONTRACT (gate v8, 9 Sep 2026)
 
-**ChatGPT writes the prompts. You run them in Higgsfield and build the gallery.**
+**ChatGPT creates the still images. You consume them. You do not generate routine stills.**
 
-The former model — ChatGPT generates the images and uploads them to Cloudinary before handoff — is
-**obsolete**. Do not revive it.
+Two models are now obsolete and must not be revived: ChatGPT-writes-prompts-Claude-generates (v5-v7),
+and the older Cloudinary-first handoff it replaced.
 
-- **Cloudinary is OPTIONAL. Cloudinary absence is never a blocker.**
-- Packages are expected to carry ChatGPT's Higgsfield prompts per product.
+- **ChatGPT creates every premium customer-facing still and uploads it to Cloudinary immediately**,
+  capturing `secure_url` and `public_id`. Cloudinary is the standard asset handoff and storage layer
+  for commerce stills — it is no longer optional.
+- **Claude Code does NOT independently generate a four-image gallery in Higgsfield.**
+- **Higgsfield is a selective specialist tool — mainly video** — reserved for exceptional visual
+  tasks explicitly assigned in the package. It is not the default photo factory.
+- **A missing Cloudinary still is an ASSET GAP, not permission to spend credits.** Mark that
+  product's creative handoff blocked, report the gap, and continue the rest of the batch.
 - You may make **factual SKU-matching corrections only** — substrate match, print-area fit,
-  legibility, production constraints, and correcting AI-generated typography with
-  deterministic/vector text.
-- **You do not invent or rewrite the creative concept**, composition, scene, styling, or visual
-  direction. If a supplied prompt is technically impossible, report the impossibility rather than
-  substituting your own concept.
-- If prompts are missing from the package, request them. Do not write them yourself and proceed.
+  legibility, production constraints.
+- **You do not invent, rewrite, or substitute the approved creative.** If assets or prompts are
+  missing, request them. Do not write them yourself and proceed.
 
-### LOCKED RULE — PREMIUM CREATIVE IS UNIVERSAL (locked 9 Sep 2026)
+### LOCKED RULE — PREMIUM CREATIVE IS UNIVERSAL
 
-**ALL approved products — Printify/POD AND CJ physical products — receive premium customer-facing
-creative generated from ChatGPT-authored Higgsfield prompts.**
+**ALL approved products — Printify/POD AND CJ physical — receive premium customer-facing creative
+created by ChatGPT and delivered as Cloudinary assets.** No product class ships with supplier
+imagery as its intended final creative; supplier images are **reference material only**.
 
-There is no product class that ships with supplier imagery as its intended final creative.
+For CJ physical products the package carries the exact CJ SKU/variant (or a variant-resolution
+instruction), supplier reference imagery for factual matching, and the Cloudinary stills.
 
-**For CJ physical products:**
+**A publishing limitation never changes creative ownership, and never authorizes credit spend.**
+A TikTok / eBay / native-UI limitation does not cancel the premium creative — ChatGPT still creates
+and stores it. Mark the real downstream limitation:
 
-- Supplier images are **REFERENCE MATERIAL ONLY**.
-- Supplier images are **not** the intended final customer-facing creative.
-- The package should include the exact CJ SKU/variant, or an explicit variant-resolution instruction.
-- The package should include supplier reference imagery available through the executable path.
-- The package should include ChatGPT-authored Higgsfield prompts.
-- The package should include the intended premium gallery set.
-- **You execute those prompts after verifying the exact SKU/variant.**
-- Cloudinary is optional; missing Cloudinary assets are never a creative blocker.
+- Channel publishes but the gallery cannot be replaced → **`PUBLISHED_GALLERY_BLOCKED`**
+  (retain the premium Cloudinary assets for marketing use elsewhere)
+- Listing creation itself requires native UI → **`NATIVE_UI_REQUIRED`**
 
-**A publishing limitation never cancels creative generation.**
-
-A TikTok / eBay / native-UI publishing limitation does **not** cancel premium creative generation.
-Generate the premium images anyway, then mark the actual downstream limitation appropriately:
-
-- Channel can publish but the gallery cannot be replaced → **`PUBLISHED_GALLERY_BLOCKED`**
-- Actual listing creation requires native UI → **`NATIVE_UI_REQUIRED`**
-
-In either case, **complete all upstream executable work, including premium creative generation,
-before marking the status.** A downstream limitation is a status, not permission to stop early.
+In either case complete all upstream executable work before marking the status.
 
 **Escalate only for:** authentication, payment, identity verification, material legal or IP
 uncertainty, a serious safety or compliance issue, an irreversible destructive action, no viable
@@ -210,6 +202,10 @@ a re-run safe. Skipping step 2 means a second invocation republishes the whole b
 
 **A PENDING record is not self-authorizing.** Claim only work you have been authorized to run.
 
+**`COMPLETE` is never reopened, reset, or reused.** Unfinished or blocked products from a COMPLETE
+batch are recovered as a **new recovery batch/package with a NEW `batch_id`** — never by requeueing
+the original record. Reopening a COMPLETE batch risks duplicating the listings it already published.
+
 **`FAILED` is terminal. It is never automatically reclaimed.**
 - Do not pick up a `FAILED` record on a later run; do not reset it to `PENDING` under any circumstances
 - A retry requires a deliberate new requeue action originating outside this process
@@ -323,6 +319,9 @@ Do not force every product onto every channel. Match the channel to the buyer.
 
 **Printify**
 - Does not sync tags or production partners to Etsy. Both need a follow-up pass.
+- **Mockup injection is asynchronous and backfills.** After publish it keeps pushing supplier
+  mockups for minutes and refills any slot you free by deleting. Sweep until two clean readbacks.
+- Etsy caps a listing at 10 images, so a multi-variant product's mockups arrive in waves.
 - Publish returns an Etsy listing ID in `external`; on TikTok `external.id` is the only completion proof.
 - `sales_channel_properties` is not writable through the product API and reads null right after
   publishing. It populates asynchronously. Not a blocker.
@@ -350,7 +349,15 @@ Do not force every product onto every channel. Match the channel to the buyer.
 - Sourcing requests have a daily account limit.
 - Shop list can lag several minutes behind the dashboard after a new connection.
 
-**Higgsfield**
+**Higgsfield** *(video and explicitly assigned exceptional tasks only — not routine stills)*
+- Costs measured 9 Sep 2026: `nano_banana_pro` 2 credits at 2k, **4 at 4k**; bytedance upscale 2;
+  `recraft_v4_1` 1.25 at 1k but **8 at 2k**; `z_image` 0.15. A full 4-image gallery plus production
+  art ran ~12 credits per product — 41 credits covered only three products.
+- **Native 4k costs the same as 2k-plus-upscale and yields more pixels** (3712x4608 vs 3311x4096),
+  so generate at 4k directly rather than upscaling.
+- Output caps near 4096px, so large print areas (a 50x60in blanket at 7825x9325) land near 66 DPI.
+- Plan-advertised "unlimited" allowances are **not spendable**; `models_explore` reports
+  `unlim.available: false`. Credits are the only budget.
 - 8 concurrent jobs on the Plus plan. `generate_image_batch` accepts count=1 per entry.
 - Prompt-level prohibitions do not reliably control palette. For geometric or diagrammatic designs,
   **build deterministically in vector instead of generating and correcting.**
@@ -392,10 +399,14 @@ customer-facing.
 
 Approved premium images occupy ranks 1–4 consecutively, hero first, and nothing else remains.
 
-**Workflow:** Publish → Upload Premium Gallery → Delete ALL Supplier Mockups → Live Readback →
-Verify Premium-Only → LIVE_VERIFIED
+**Workflow:** Publish → Upload Premium Gallery → Delete ALL Supplier Mockups → Re-read → Repeat →
+**TWO CONSECUTIVE CLEAN READBACKS** → LIVE_VERIFIED
 
-Identify supplier images by **empty `alt_text`**; premium uploads always carry alt text.
+**MOCKUP CLEANUP RULE — one pass is never sufficient evidence.** Printify keeps injecting supplier
+mockups asynchronously for several minutes after publish, and backfills every gallery slot a
+deletion frees. Identify them by **empty `alt_text`**, delete, wait, re-read, and repeat until
+**two consecutive readbacks** show only the intended premium assets. Measured on 9 Sep 2026:
+1 mockup for a blanket, 12 for wrapping paper, 14 for a mug — all after the first "clean" pass.
 
 **TikTok is the standing exception** — publish, mark `PUBLISHED_GALLERY_BLOCKED`, continue. The
 premium set is still generated; only its placement is blocked.
@@ -439,6 +450,27 @@ Then totals: approved, executed, live verified, gallery blocked, hard blocked, l
 - **Package target prices are targets, not hard caps.** Repricing is autonomous where it improves
   economics while preserving market competitiveness.
 - Never return to D'Andre for a price.
+
+---
+
+## HISTORICAL — CORE-021–026 (executed 9 Sep 2026, attempt 1)
+
+First full execution through the repo delivery pipeline. **3 of 6 LIVE_VERIFIED:** wrapping paper
+4572126493, mug 4572148424, blanket 4572140458 — all premium-only galleries, tags and production
+partner set. CORE-023, CORE-025 and CORE-026 stopped as `EXECUTION_BLOCKED` when Higgsfield credits
+ran out; their substrates are resolved and recorded in the result file.
+
+What the run proved, and what gate v8 fixed: generating stills in Higgsfield is the expensive step
+and does not scale to 10+ products a day, so still creation moved back to ChatGPT with Cloudinary
+delivery; and a single mockup cleanup pass is not evidence of a clean gallery.
+
+The queue record is **COMPLETE and must never be reopened.** CORE-023, CORE-025 and CORE-026 are
+recovered as a **new recovery batch with a new batch_id**. CORE-025 carries a replacement concept
+from D'Andre — OCTOBER BAKING CLUB, vintage mid-century fall cookbook aesthetic, black cat beside an
+apple pie — because the original brief duplicated the live CORE-005 ghost chef towel.
+
+CORE-024's blanket art stays as-is at ~66 DPI by owner decision: zero sales signal yet, so the print
+master is upgraded only if the product starts moving.
 
 ---
 
