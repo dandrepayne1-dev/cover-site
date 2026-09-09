@@ -1,0 +1,100 @@
+{
+  "batch_id": "CORE-021-026",
+  "completed_at": "2026-09-09T18:30:00Z",
+  "attempt": 1,
+  "outcome": "3 of 6 products LIVE_VERIFIED on Etsy with premium-only galleries. 3 products stopped by a hard resource limit: the Higgsfield credit balance was exhausted (41.06 credits at start, 5.06 remaining). Buying credits is a payment action and is reserved for D'Andre, so those three were not built rather than shipped with supplier mockups or degraded creative.",
+  "products": [
+    {
+      "product_id": "CORE-021", "status": "LIVE_VERIFIED", "marketplace": "etsy", "fulfillment": "printify",
+      "retail": "21.99 (30x36) / 29.99 (30x72)", "cost": "8.21 / 10.87", "margin_pct": "62.7 / 63.8",
+      "listing_id": "4572126493", "live_url": "https://www.etsy.com/listing/4572126493/vintage-christmas-wrapping-paper-retro",
+      "printify_product_id": "6aa1a2d687017fb4a7059aa9",
+      "blueprint_id": 1367, "print_provider_id": 1, "provider": "SPOKE Custom Products",
+      "variants_enabled": [102987, 102988, 102989, 102990], "variants_disabled": [102991, 102992],
+      "art_image_id": "6aa1a2bd36cc05bb23a1de1d", "art_px": "3712x4608", "print_area_px": "9075x10800", "approx_dpi_at_30in": 124,
+      "gallery": "premium_only", "gallery_detail": "4 premium images at ranks 1-4, all alt-texted; 12 Printify supplier mockups deleted across repeated injection waves",
+      "tags_set": 13, "production_partner": "US Print Network 5784598",
+      "autonomous_changes": ["resolved blueprint/provider/variants from null via Printify API", "priced 21.99/29.99 against real cost for 62-64% margin", "disabled the 30x180 variants as poor economics"],
+      "blocker": null
+    },
+    {
+      "product_id": "CORE-022", "status": "LIVE_VERIFIED", "marketplace": "etsy", "fulfillment": "printify",
+      "retail": "24.99 (11oz) / 29.99 (15oz)", "cost": "7.35 / 8.38", "margin_pct": "70.6 / 72.1",
+      "listing_id": "4572148424", "live_url": "https://www.etsy.com/listing/4572148424/cozy-reading-club-mug-black-book-lover",
+      "printify_product_id": "6aa1a492c31539ee0a0d1260",
+      "blueprint_id": 479, "blueprint": "Black Mug (11oz, 15oz)", "print_provider_id": 99, "provider": "Printify Choice",
+      "variants_enabled": [65217, 104470],
+      "art_image_id": "6aa1a4851d34f60b14c145ae", "art_px": "6336x2688", "print_area_px": "2327x1086", "resolution_headroom": "2.7x",
+      "visual_qc": "Make 6177658 ARTWORK RUBRIC-v1.1: TOTAL=87 VERDICT=PASS CONFIDENCE=HIGH, TEXTISSUES=None typography is excellent, DEFECTS=None observed. Stopped at PASS per operating rule.",
+      "gallery": "premium_only", "gallery_detail": "4 premium images at ranks 1-4, all alt-texted; 14 Printify supplier mockups deleted across repeated injection waves",
+      "tags_set": 13, "production_partner": "US Print Network 5784598",
+      "autonomous_changes": ["resolved black mug blueprint 479 (package left it null; blueprint 478 rejected as it has no black option)", "priced 24.99/29.99 vs 27.99 target for competitiveness at 70%+ margin"],
+      "blocker": null
+    },
+    {
+      "product_id": "CORE-023", "status": "EXECUTION_BLOCKED", "marketplace": "etsy", "fulfillment": "printify",
+      "retail": null, "cost": null, "listing_id": null, "live_url": null,
+      "blueprint_id": 976, "blueprint": "Garden & House Banner", "print_provider_id": 92, "provider": "Pic The Gift",
+      "variant_id": 78842, "variant": "24.5in x 32in house banner", "print_area_px": "7800x10012", "supplier_state": "API_VERIFIED",
+      "gallery": null,
+      "blocker": "Higgsfield credits exhausted before production art could be generated. Substrate fully resolved and verified; needs ~12 credits to complete (4 production art at 4k + 8 for the four-image premium gallery)."
+    },
+    {
+      "product_id": "CORE-024", "status": "LIVE_VERIFIED", "marketplace": "etsy", "fulfillment": "printify",
+      "retail": 49.99, "cost": 20.91, "us_shipping": 8.39, "margin_pct": 58.2,
+      "listing_id": "4572140458", "live_url": "https://www.etsy.com/listing/4572140458/book-lover-blanket-cozy-reading-nook",
+      "printify_product_id": "6aa1a19e1a6a142b3b059af7",
+      "blueprint_id": 522, "print_provider_id": 99, "provider": "Printify Choice", "variant_id": 68323,
+      "art_image_id": "6aa1a16a467e716983a17a57", "art_px": "3311x4096", "print_area_px": "7825x9325", "approx_dpi_at_50in": 66,
+      "gallery": "premium_only", "gallery_detail": "4 premium images all alt-texted at ranks 1,2,3,5; 1 supplier mockup deleted. Rank numbering is non-consecutive because Etsy does not renumber after deletion; customer-facing display order is correct.",
+      "tags_set": 13, "production_partner": "US Print Network 5784598",
+      "autonomous_changes": ["verified bp522/pp99/v68323 still optimal", "repriced 44.99 -> 49.99 to reach the preferred 55-65% band"],
+      "blocker": null,
+      "quality_note": "Higgsfield output caps near 4096px, so art is ~66 DPI against the 50x60in print area. Acceptable for large-format dye-sublimation at viewing distance but below a 150 DPI ideal; recorded rather than hidden."
+    },
+    {
+      "product_id": "CORE-025", "status": "EXECUTION_BLOCKED", "marketplace": "etsy", "fulfillment": "printify",
+      "retail": null, "cost": 8.93, "listing_id": null, "live_url": null,
+      "blueprint_id": 2732, "blueprint": "Waffle Weave Kitchen Hand Towel", "print_provider_id": 92, "provider": "Pic The Gift",
+      "variant_id": 149001, "variant": "16in x 25in", "print_area_px": "5400x8100", "supplier_state": "API_VERIFIED",
+      "gallery": null,
+      "blocker": "Higgsfield credits exhausted before production art could be generated. Real cost 8.93 already confirmed from the existing live CORE-005 product on the identical variant.",
+      "originality_flag": "RAISED FOR D'ANDRE. The approved brief for CORE-025 is a vintage ghost chef Halloween kitchen towel on blueprint 2732/provider 92/variant 149001. The shop ALREADY has 'Halloween Kitchen Towel, Vintage Ghost Chef' (CORE-005, Etsy listing 4571666502, Printify 6aa0b247fb54b4ab9a0dfe15) live on the identical substrate with the identical subject. Publishing this as briefed would put a near-duplicate of our own live listing on Etsy. Under the originality gate a self-duplicate fails the swap and market-analogue tests, and a technical PASS with an originality FAIL does not publish. This needs a differentiated concept from ChatGPT, not a Claude-invented one."
+    },
+    {
+      "product_id": "CORE-026", "status": "EXECUTION_BLOCKED", "marketplace": "etsy", "fulfillment": "printify",
+      "retail": null, "cost": null, "listing_id": null, "live_url": null,
+      "blueprint_id": 951, "blueprint": "Can Cooler", "print_provider_id": 92, "provider": "Pic The Gift",
+      "variants": [{"id": 78460, "title": "Regular Can", "print_area_px": "1425x3300"}, {"id": 78461, "title": "Slim Can", "print_area_px": "1382x4161"}],
+      "supplier_state": "API_VERIFIED", "gallery": null,
+      "blocker": "Higgsfield credits exhausted before production art could be generated. Substrate resolved; both can sizes available to form the approved 'collection'.",
+      "pricing_note": "Package carried null retail and null modeled cost. Per the pricing-authority rule this is not an owner decision; retail will be set from live base cost plus US shipping at execution time."
+    }
+  ],
+  "totals": {
+    "approved": 6, "executed": 3, "live_verified": 3,
+    "gallery_blocked": 0, "hard_blocked": 3, "listings_produced": 3
+  },
+  "resource_accounting": {
+    "higgsfield_credits_at_start": 41.06,
+    "higgsfield_credits_remaining": 5.06,
+    "credits_per_completed_product": 12,
+    "cost_model": "nano_banana_pro 2 credits at 2k, 4 credits at 4k; bytedance upscale 2 credits; recraft_v4_1 1.25 at 1k and 8 at 2k; z_image 0.15",
+    "note": "Native 4k generation costs the same 4 credits as 2k plus a separate upscale, and yields larger output (3712x4608 vs 3311x4096), so 4k direct is the better route. Unlimited-generation allowances advertised on the plan are NOT spendable (models_explore reports unlim.available false), so credits were the only budget."
+  },
+  "verified_this_run": [
+    "All 6 Printify blueprint/provider/variant combinations resolved and verified through the API actually used; the package left 4 of 6 as null with resolution instructions",
+    "Real base costs and real US shipping retrieved, not assumed",
+    "Every write read back: product creation, price updates, publish, gallery uploads, mockup deletions and final gallery state",
+    "Artwork QC gate run on the typography-dependent mug and passed at 87 before publishing"
+  ],
+  "environment_limits_found": [
+    "The agent proxy blocks res.cloudinary.com and the Higgsfield CDN, so generated images cannot be downloaded or visually inspected in this session. The Make Visual QC scenarios are the only way to visually validate artwork, and they were used for CORE-022.",
+    "Printify keeps injecting supplier mockups into an Etsy listing asynchronously for several minutes after publish, backfilling every slot freed by a deletion. Reaching a premium-only gallery took repeated delete-and-verify sweeps: 1 mockup for the blanket, 12 for the wrapping paper, 14 for the mug. A single post-publish cleanup pass is not sufficient.",
+    "Make scenario 6209505 (CJ Freight Quick Quote) requires a CJ Access Token this session does not hold."
+  ],
+  "requeue_requirements": [
+    "Top up Higgsfield credits (about 36 credits to finish CORE-023, CORE-025 and CORE-026 at the same quality), then requeue those three as a new batch",
+    "ChatGPT to supply a differentiated concept for CORE-025 that does not duplicate the live CORE-005 ghost chef towel, or D'Andre to confirm the duplicate is intended"
+  ]
+}
