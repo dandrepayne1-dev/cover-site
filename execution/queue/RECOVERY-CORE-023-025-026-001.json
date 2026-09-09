@@ -1,1 +1,1 @@
-{"batch_id":"RECOVERY-CORE-023-025-026-001","package_path":"execution/packages/RECOVERY-CORE-023-025-026-001.json","status":"PENDING","written_at":"2026-09-09T14:49:20-05:00","started_at":null,"completed_at":null,"attempt":0,"result_path":null,"source_batch":"CORE-021-026"}
+{"batch_id":"RECOVERY-CORE-023-025-026-001","package_path":"execution/packages/RECOVERY-CORE-023-025-026-001.json","status":"IN_PROGRESS","written_at":"2026-09-09T14:49:20-05:00","started_at":"2026-09-09T20:04:07Z","completed_at":null,"attempt":1,"result_path":null,"source_batch":"CORE-021-026"}
