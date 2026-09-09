@@ -1,0 +1,164 @@
+{
+  "batch_id": "MM-20260909-004-EXEC-001",
+  "mm_id": "MM-20260909-004",
+  "attempt": 1,
+  "executed_at": "2026-09-09T23:25:00Z",
+  "batch_status": "BLOCKED_AT_QC_GATE",
+  "products": [
+    {
+      "product": "THE POET'S FIELD NOTES - Vol. I - Hardcover Journal Matte (Lined)",
+      "status": "EXECUTION_BLOCKED",
+      "blocked_at": "RENDER_QC_GATE",
+      "blocking_rule": "package execution_rules[4]: 'Publish only after QC PASS.' Render QC returned VERDICT=REVIEW on both passes. REVIEW is neither PASS nor REWORK.",
+      "marketplace": "Etsy (Printify shop 28809600 'My Etsy Store')",
+      "published": false,
+      "marketplace_listing_id": null,
+      "live_url": null,
+
+      "preflight": "GO - 8/8 gates",
+      "claim": "IN_PROGRESS attempt 1, committed before any commerce mutation (225f496)",
+
+      "printify_product_id": "6aa1e815207d5d84e308d5fa",
+      "blueprint_id": 485,
+      "print_provider_id": 28,
+      "print_provider": "District Photo",
+      "enabled_variants": [65223],
+      "variant_title": "Journal",
+      "decoration_method": "digital-printing",
+
+      "economics_verified_live": {
+        "production_cost_usd": 10.59,
+        "package_reference_cost_usd": 10.59,
+        "cost_match": true,
+        "retail_usd": 27.99,
+        "us_shipping_first_item_usd": 5.49,
+        "handling_days": 10,
+        "gross_margin_pct": 62.2,
+        "target_band_pct": "55-65",
+        "in_band": true,
+        "reprice_applied": false,
+        "note": "Live economics re-read before publish per package instruction. No material change, so no reprice warranted."
+      },
+
+      "production_master": {
+        "repo_path": "execution/assets/MM-20260909-004/the-poets-field-notes-vol-1-full-wrap-4065x2850.png",
+        "pinned_commit": "f40f94ced65ed9ebe83e2810fa7d3df4494875f4",
+        "sha256": "d7ffff74ba96e68d229891ddb71ca0134cf88a90782317529307de229970a08a",
+        "sha256_match": true,
+        "bytes": 718491,
+        "dimensions": "4065x2850",
+        "printify_image_id": "6aa1e800949bb8500c43a893",
+        "printify_reported_bytes": 718473,
+        "placement": "scale 1, angle 0, x 0.5, y 0.5 - exact 1:1 fill of the 4065x2850 placeholder; the only mechanically possible placement",
+        "creative_untouched": true
+      },
+
+      "render_qc": [
+        {
+          "pass": 1,
+          "camera": "cover",
+          "reviewer": "claude-sonnet-4-5 (Make 6177780)",
+          "overall": 72,
+          "verdict": "REVIEW",
+          "classification": "DESIGN_SYSTEM_FAILURE",
+          "issues": "Spine interrupts front design flow, flowers and text elements awkwardly split across spine seam",
+          "context_given": "none - reviewer was not told the print file is a three-panel full wrap"
+        },
+        {
+          "pass": 2,
+          "camera": "front",
+          "reviewer": "claude-sonnet-4-5 (Make 6177780)",
+          "overall": 78,
+          "verdict": "REVIEW",
+          "classification": "PRINT_PLACEMENT_FAILURE",
+          "orientation": 10,
+          "issues": "Flower crop at bottom edge appears tight, wood grain texture alignment at spine transition could be smoother",
+          "context_given": "reviewer told the file is a three-panel wrap and a visible spine is intended"
+        },
+        {
+          "pass": "reviewer_2_blind",
+          "reviewer": "Make 6177794 (OpenAI)",
+          "result": "UNAVAILABLE",
+          "error": "[429] You have no credits remaining - OpenAI API billing exhausted",
+          "impact": "the independent tie-breaker that would resolve a REVIEW verdict is offline"
+        }
+      ],
+
+      "qc_reviewer_conflict": "The two passes contradict each other on root cause: pass 1 blames the artwork (DESIGN_SYSTEM_FAILURE), pass 2 blames the placement (PRINT_PLACEMENT_FAILURE) while scoring orientation 10/10. Only one placement is mechanically possible, so 'adjust vertical placement' is not an available action and would break wrap registration.",
+
+      "deterministic_geometry_verification": {
+        "method": "pixel measurement of the locked master against the supplier placeholder; performed because images.printify.com is proxy-blocked (CONNECT 403, policy denial) so the render could not be inspected directly",
+        "derived_dpi": 337.9,
+        "panel_layout": "back 0-1941 (5.75 in) | spine 1942-2121 (180 px = 0.533 in, centred on image centre 2032) | front 2122-4064 (5.75 in)",
+        "panel_widths_match_trim": true,
+        "vertical_bleed_per_side_in": 0.217,
+        "spine_construction": "dedicated spine panel carrying its own vertical spine type; front and back content clear of the fold",
+        "title_block_bbox": "x 2770-3482, y 833-1160",
+        "safe_area_requirement_in": 0.625,
+        "title_clearances_in": {
+          "right_trim": 1.72,
+          "top_trim": 2.47,
+          "bottom_trim": 5.0,
+          "spine_fold": 1.92
+        },
+        "min_margin_multiple": "2.8x requirement",
+        "barcode_reserve": "deliberate pale patch x 1572-1827, y 2472-2727 = 0.76 x 0.76 in at 99.8% fill; requirement 0.5 x 0.5 in - satisfied",
+        "blocking_classes_named_in_execution_rules_3": {
+          "trim": "CLEAR",
+          "orientation": "CLEAR",
+          "title_safety": "CLEAR",
+          "barcode": "CLEAR",
+          "wrap": "CLEAR"
+        },
+        "conclusion": "No mechanical geometry or trim conflict exists between Printify's placeholder and the locked master. Pass 1's 'split across spine seam' finding is factually contradicted by the master, which reserves a dedicated spine panel and keeps front/back content 1.92 in clear of the fold."
+      },
+
+      "upstream_work_completed": [
+        "master transported and byte-verified against pinned commit",
+        "supplier blueprint/provider/variant reconfirmed live via the API used for execution",
+        "live cost and US shipping re-read and matched to package reference",
+        "product created and readback-verified",
+        "artwork attached at exact 1:1 placement and readback-verified",
+        "13 Etsy tags set and readback-verified, all within the 20-character cap"
+      ],
+
+      "mechanical_corrections_applied": [
+        "Package tag 'dark academia journal' is 21 characters and would be silently rejected by Etsy's 20-character cap. Shortened to 'dark academia', preserving the search term. Factual SKU/channel-constraint correction only; no creative change."
+      ],
+
+      "non_blocking_findings": [
+        "Printify reports 718473 bytes for the uploaded master vs 718491 at source - an 18-byte delta consistent with ancillary PNG chunk stripping (the source carries a bKGD chunk). Dimensions, CRCs and visual content verified intact; not corruption.",
+        "images.printify.com returns CONNECT 403 through the agent proxy (policy denial), so supplier renders cannot be inspected locally. Render QC runs server-side in Make and is unaffected.",
+        "Make 6177780 has an empty output interface; its verdict must be read from the PRODUCT_RENDER_QC sheet tab, not from the execution detail.",
+        "sales_channel_properties reads empty pre-publish, as expected."
+      ],
+
+      "remaining_blocker": "Render QC returned REVIEW (not PASS) twice, and the immutable package conditions publication on QC PASS. Every blocking defect class the package itself names is verified absent by measurement, and the artwork is creative-locked so no redesign is permitted. This needs D'Andre's ruling, not a creative change.",
+
+      "decision_required_from_dandre": {
+        "option_a": "Treat the measured verification as satisfying the gate and publish as-is. Nothing further is needed - the product is one step from live.",
+        "option_b": "Return the spine/wrap question to ChatGPT Creative for an aesthetic revision. Note this contradicts the FINAL-APPROVED creative lock.",
+        "recommendation": "Option A. The gate's own enumerated blocking classes (trim, orientation, title-safety, barcode, wrap) are all measurably clear with 2.8x to 8x safe-area margin, the reviewer never returned REWORK, and its two passes disagree on root cause. Restoring OpenAI credits would also bring the blind second reviewer back online to break future ties automatically."
+      }
+    }
+  ],
+
+  "totals": {
+    "approved": 1,
+    "executed": 1,
+    "live_verified": 0,
+    "gallery_blocked": 0,
+    "hard_blocked": 0,
+    "qc_gate_blocked": 1,
+    "listings_produced": 0
+  },
+
+  "queue_note": "Queue record deliberately left IN_PROGRESS, not COMPLETE and not FAILED. COMPLETE can never be reopened and would force an unnecessary recovery batch for a product that is one ruling away from publishing; FAILED is terminal and requires an external requeue. The record stays claimed and resumable, and is reported rather than silently reclaimed.",
+
+  "system_gaps_for_dandre": [
+    "OpenAI API credits are exhausted, so Make 6177794 (blind Reviewer 2) cannot run. This is the designated tie-breaker for REVIEW verdicts and its absence is what turned this into an owner decision.",
+    "Package Queue Writer 6214135 supports only one production master per batch; a multi-asset batch cannot currently be delivered.",
+    "asset_path/asset_b64 are required by the writer, so an asset-free batch cannot be queued.",
+    "Four Cloudinary test assets still cannot be deleted - 6179804 hardcodes GET and 6179772 only uploads, so no DELETE route exists."
+  ]
+}
