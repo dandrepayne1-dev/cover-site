@@ -1,0 +1,137 @@
+{
+  "batch_id": "MM-20260909-010-EXEC-001",
+  "mm_id": "MM-20260909-010",
+  "attempt": 1,
+  "executed_at": "2026-09-10T01:06:00Z",
+  "batch_status": "BLOCKED_AT_ECONOMICS_GATE",
+  "products": [
+    {
+      "product": "NIGHT MARKET No. 01 - 1014-piece horizontal jigsaw puzzle",
+      "status": "ECONOMICS_BLOCKED",
+      "published": false,
+      "marketplace_listing_id": null,
+      "live_url": null,
+      "blocking_rule": "package margin_rule: 'Before marketplace fees, target at least 45% gross margin using the exact authenticated 1014-piece production cost plus U.S. shipping. If the target retail fails this gate, stop and report the exact economics blocker.'",
+
+      "preflight_verdict": "GO - all deterministic gates passed",
+      "preflight_detail": {
+        "queue_record_exists": true,
+        "queue_status_at_claim": "PENDING",
+        "package_exists_and_parses": true,
+        "package_matches_handoff": true,
+        "master_sha256": "6c24afaaf387ab1cf883b040754226269589f5714f199b074e9dd633e3d49930",
+        "master_sha256_match": true,
+        "master_bytes": 11041060,
+        "master_bytes_match": true,
+        "master_dimensions": "8700x5768",
+        "master_dimensions_match": true,
+        "master_full_decode": "clean - not truncated or corrupt",
+        "master_effective_dpi_at_finished_size": "305 x 303 at 28.5 x 19.02 in",
+        "pinned_commit": "9b2789c7470c94a4ce37920accb3a3280093a2cc",
+        "blueprint_provider_variant_live": "blueprint 1149 / provider 28 District Photo / variant 87922 '1014 pcs (Horizontal)' front placeholder 8700x5768 dye-sublimation - confirmed via the API used for execution",
+        "aspect_match": "1.508322 master vs 1.508322 placeholder - exact 1:1 fill, no crop or edge loss possible"
+      },
+
+      "claim_status": "CLAIMED - IN_PROGRESS attempt 1, committed before any commerce mutation (e73d77f). It was the only PENDING record.",
+
+      "printify_product_id": "6aa202384338f2e83c05ced6",
+      "production_master_url_used": "https://raw.githubusercontent.com/dandrepayne1-dev/cover-site/9b2789c7470c94a4ce37920accb3a3280093a2cc/execution/assets/MM-20260909-010/night-market-no-01-1014-horizontal-8700x5768.jpg",
+      "printify_image_id": "6aa2021ab07211c772f1e7a8",
+      "enabled_variants": [87922],
+      "placement": "scale 1, angle 0, x 0.5, y 0.5 - exact 1:1 fill of the 8700x5768 front placeholder",
+      "creative_untouched": true,
+
+      "exact_verified_production_cost_usd": 28.47,
+      "exact_verified_us_shipping_usd": 9.59,
+      "us_shipping_note": "Two US profiles cover variant 87922: 9.59 first item / 2.69 additional, and 11.39 first item / 3.09 additional. The gate fails on the cheaper profile, so the conclusion holds either way.",
+      "us_handling_time_days": 10,
+
+      "economics_gate": {
+        "target_retail_usd": 32.99,
+        "landed_cost_usd": 38.06,
+        "margin_at_target_pct": -15.4,
+        "per_unit_result_usd": -5.07,
+        "gate_required_pct": 45,
+        "verdict": "FAIL",
+        "severity": "The product is underwater at the target price - it loses $5.07 per unit before a single marketplace fee. This is not a few points short of the gate.",
+        "merchandise_only_margin_pct": 13.7,
+        "merchandise_only_note": "Even ignoring shipping entirely, merchandise margin is 13.7% against a 45% gate.",
+        "retail_required_for_45pct_usd": 69.20,
+        "retail_required_for_45pct_higher_ship_usd": 72.47,
+        "market_judgment": "A ~$69-72 retail for a 1000-piece art puzzle is far outside the Etsy competitive band (comparable adult art puzzles commonly sit around $25-45). Repricing to clear the gate would price the product out of its market, so autonomous repricing does not rescue this."
+      },
+
+      "root_cause": {
+        "finding": "The package's reference economics were built on the catalogue 'from' figures, which belong to the 110-piece variant, not the 1014-piece variant this batch targets.",
+        "evidence": "Package reference public_catalog_start_price_usd 8.39 and public_shipping_from_usd 5.99 are EXACTLY variant 87919 (110 pcs Horizontal): server-verified cost 8.39, US shipping 5.99. The 1014-piece variant 87922 is server-verified at cost 28.47 and US shipping 9.59.",
+        "note": "The package's own preflight_required list anticipated this exact trap: 'Do not treat the catalog from price as the 1014-piece cost.' The preflight caught it; the target retail was set before it was caught."
+      },
+
+      "server_verified_variant_economics": [
+        {"variant": "110 pcs (Horizontal)",  "id": 87919, "cost_usd": 8.39,  "us_ship_usd": 5.99, "landed_usd": 14.38, "retail_for_45pct_usd": 26.15},
+        {"variant": "252 pcs (Horizontal)",  "id": 87920, "cost_usd": 12.56, "us_ship_usd": 6.59, "landed_usd": 19.15, "retail_for_45pct_usd": 34.82},
+        {"variant": "520 pcs (Horizontal)",  "id": 87921, "cost_usd": 16.73, "us_ship_usd": 8.29, "landed_usd": 25.02, "retail_for_45pct_usd": 45.49},
+        {"variant": "1014 pcs (Horizontal)", "id": 87922, "cost_usd": 28.47, "us_ship_usd": 9.59, "landed_usd": 38.06, "retail_for_45pct_usd": 69.20}
+      ],
+
+      "render_qc_verdict": {
+        "overall": 92,
+        "verdict": "PASS",
+        "classification": "NONE",
+        "placement": 10, "scale": 10, "crop": 10, "orientation": 10,
+        "readability": 9, "colour": 9, "seam_risk": 10,
+        "issues": "Minor piece separation lines visible in dark areas, slight warmth in color cast",
+        "fix": "None required - normal puzzle manufacturing characteristics",
+        "conclusion": "Artwork and placement are clean. Nothing about the creative or its application blocks this product."
+      },
+
+      "gallery_qc_verdict": "NOT REACHED - the economics gate precedes publish and gallery build, so no gallery was assembled and no supplier renders were promoted to a listing.",
+
+      "external_readback_timestamps": [],
+
+      "upstream_work_completed": [
+        "master verified byte-exact against the pinned commit and fully decoded",
+        "blueprint, provider and variant re-authenticated via the execution API",
+        "exact 1014-piece production cost retrieved from the server, not assumed",
+        "exact US shipping retrieved from the server, not assumed",
+        "batch claimed before any commerce mutation",
+        "master uploaded via commit-pinned raw URL (Lane A)",
+        "draft product created with ONLY variant 87922 enabled, art placed 1:1",
+        "render QC run and PASSED at 92"
+      ],
+
+      "mechanical_corrections_applied": [
+        "Package tag 'dark aesthetic puzzle' is 21 characters and would be silently rejected by Etsy's 20-character cap. Shortened to 'dark aesthetic'. Factual channel-constraint correction only; no creative change."
+      ],
+
+      "non_blocking_findings": [
+        "Printify reports 11041042 bytes for the uploaded master vs 11041060 at source - an 18-byte delta, the same ancillary-marker stripping seen on MM-20260909-004. Dimensions verified 8700x5768 and render QC scored crop and scale 10/10, so this is not corruption.",
+        "Creating a product on blueprint 1149 auto-populates all 8 variants. Only 87922 is enabled, as instructed; the other 7 remain disabled and carry Printify's default price=cost.",
+        "The draft product was deliberately NOT deleted. It holds the verified cost, the correct 1:1 placement and a passing render QC, so a repriced or re-scoped relaunch can reuse it instead of rebuilding."
+      ],
+
+      "state_preserved": "Draft product 6aa202384338f2e83c05ced6 exists in Printify shop 28809600, unpublished and not visible to any customer. No listing was created on any marketplace. Nothing is live.",
+
+      "decision_required_from_dandre": {
+        "option_a": "Reprice the 1014-piece to $69.20+ and publish. Clears the gate but prices the product well above the competitive band for a 1000-piece puzzle.",
+        "option_b": "Re-scope to the 520-piece horizontal (variant 87921) at ~$45.49, or the 252-piece (87920) at ~$34.82. Both clear 45%. NOTE: this requires a new package - the master is 8700x5768 and the 520/252 placeholders are 6300x5100 and 4395x3450, so ChatGPT Creative must confirm the downscale or supply a matched master. I did not change the variant myself; the package locks 87922.",
+        "option_c": "Keep the 1014-piece but accept a lower margin gate for a premium collectible positioning - e.g. $49.99 yields 23.9% gross before fees. This is an owner economics decision, not an execution one.",
+        "option_d": "Seek a cheaper print provider for blueprint 1149 and re-run the economics.",
+        "recommendation": "Option B at the 520-piece, or Option A only if you want the collectible positioning to carry the price. The blocker is a supplier cost fact, not a creative or execution fault - render QC passed at 92 and the artwork is untouched."
+      },
+
+      "remaining_blocker": "Verified 1014-piece landed cost $38.06 against a $32.99 target retail. Publishing would sell every unit at a $5.07 loss."
+    }
+  ],
+
+  "totals": {
+    "approved": 1,
+    "executed": 1,
+    "live_verified": 0,
+    "gallery_blocked": 0,
+    "economics_blocked": 1,
+    "listings_produced": 0
+  },
+
+  "queue_note": "Queue record deliberately left IN_PROGRESS, not COMPLETE and not FAILED. COMPLETE can never be reopened and nothing was published; FAILED is terminal and requires an external requeue, while this is fully recoverable by a pricing or variant decision. The claim is retained so execution can resume at the publish step once the economics are resolved."
+}

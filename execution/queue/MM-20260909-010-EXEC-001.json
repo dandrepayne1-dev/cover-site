@@ -8,5 +8,12 @@
   "asset_path": "execution/assets/MM-20260909-010/night-market-no-01-1014-horizontal-8700x5768.jpg",
   "instruction": "Claim only after preflight. Execute exactly from immutable package and locked asset.",
   "started_at": "2026-09-10T01:05:00Z",
-  "preflight": "GO - master SHA-256 6c24afaa... byte-exact at 8700x5768/11041060B, full decode clean, ~304 DPI at 28.5x19.02in finished; package parses and matches handoff; blueprint 1149 / provider 28 / variant 87922 '1014 pcs (Horizontal)' front placeholder 8700x5768 dye-sublimation confirmed live; US shipping profiles retrieved. Exact production cost pending product creation (Printify exposes variant cost only on a created product)."
+  "preflight": "GO - master SHA-256 6c24afaa... byte-exact at 8700x5768/11041060B, full decode clean, ~304 DPI at 28.5x19.02in finished; package parses and matches handoff; blueprint 1149 / provider 28 / variant 87922 '1014 pcs (Horizontal)' front placeholder 8700x5768 dye-sublimation confirmed live; US shipping profiles retrieved. Exact production cost pending product creation (Printify exposes variant cost only on a created product).",
+  "result_path": "execution/results/MM-20260909-010-EXEC-001.json",
+  "blocked_at": "ECONOMICS_GATE",
+  "blocked_at_ts": "2026-09-10T01:06:00Z",
+  "blocked_reason": "Verified 1014-piece cost $28.47 + US shipping $9.59 = $38.06 landed against a $32.99 target retail. Margin -15.4% vs a 45% gate; the product loses $5.07/unit. Package margin_rule requires stop-and-report. Render QC PASSED at 92 - artwork and placement are clean, economics is the sole blocker.",
+  "printify_product_id": "6aa202384338f2e83c05ced6",
+  "published": false,
+  "note": "Deliberately NOT COMPLETE (never reopenable, and nothing published) and NOT FAILED (terminal). Draft product preserved unpublished so a repriced or re-scoped relaunch can resume without rebuilding."
 }
