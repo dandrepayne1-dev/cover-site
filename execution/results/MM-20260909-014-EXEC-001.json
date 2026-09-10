@@ -116,7 +116,7 @@
         "Listing title, description and tags were authored here - the package carried no listing copy. They are held with the unpublished draft."
       ],
       "state_preserved": "Draft product 6aa223d66c320fa5a00b1bb6 exists in TikTok shop 28861434, unpublished and not visible to any customer. No TikTok listing was created. Nothing is live. The draft holds the verified economics, correct 1:1 left/right mapping and listing copy, so a corrected-master re-run only needs the two images replaced.",
-      "remaining_blocker": "TikTok publish fails on both API and native UI. sales_channel_properties ruled out as the cause. Strongest remaining lead: blueprint 1522 / provider 23 (WOYC) TikTok eligibility - both successful controls use provider 92.",
+      "remaining_blocker": "Printify dispatches the TikTok publish job (product:publish:started fires) then abandons it silently - no failure event, no listing, on both API and native UI. Not a product-data or category rejection. Next step is a control re-publish to determine whether the TikTok channel connection is broken shop-wide.",
       "v2_resume": {
         "resumed_at": "2026-09-10T11:24:00Z",
         "resume_only": true,
@@ -298,6 +298,89 @@
           "Blueprint 1522 / print provider 23 (WOYC) may not be TikTok-Shop eligible. Both working controls use print_provider_id 92 - this is now the single clearest structural difference between success and failure.",
           "A TikTok product category may be required and assigned somewhere other than sales_channel_properties, with no API surface at all.",
           "The native UI reported the same generic failure, so whatever the gate is, it is not exposed through either surface."
+        ]
+      },
+      "publish_failure_root_cause_investigation": {
+        "run_at": "2026-09-10T14:49:00Z",
+        "question": "Why did Printify stop the TikTok publish as an error?",
+        "headline_finding": "It did NOT stop it as an error. Printify never emits a failure. It accepts the request, fires product:publish:started, then silently abandons the job - no success, no failure, no listing.",
+        "probes": [
+          {
+            "probe": "GET /v1/shops/28861434/products/<id>/publishing_status.json",
+            "result": "[404] Not found",
+            "conclusion": "Printify exposes no publish-status endpoint."
+          },
+          {
+            "probe": "GET /v1/shops/28861434/webhooks.json (before)",
+            "result": "[] - no webhooks registered",
+            "conclusion": "No prior event capture existed on this shop."
+          },
+          {
+            "probe": "POST webhook topic 'product:publish:failed'",
+            "result": "200 accepted, id 6aa2c398f0247a02fb0c16cd",
+            "conclusion": "Topic accepted."
+          },
+          {
+            "probe": "CONTROL: POST webhook topic 'totally:not:a:real:topic:xyzzy'",
+            "result": "[400] Webhook validation failed",
+            "conclusion": "Printify DOES validate topics, so acceptance of product:publish:failed proves that event genuinely exists in Printify's model."
+          },
+          {
+            "probe": "Registered product:publish:failed -> Make hook, then published",
+            "result": "No delivery. hooks_ping showed learning:true, dataStructure:null, queueCount 0.",
+            "conclusion": "No failure event fired."
+          },
+          {
+            "probe": "Registered product:publish:started -> same Make hook, then published",
+            "result": "DELIVERED. hooks_ping flipped to learning:false with a captured dataStructure.",
+            "conclusion": "POSITIVE CONTROL. The Make hook does receive Printify webhooks, which converts the failed-topic silence from an untested negative into a VERIFIED negative."
+          },
+          {
+            "probe": "Product readback after final attempt (14:58:27)",
+            "result": "external {\"id\":\"\",\"handle\":\"\"}, is_locked false, updated_at 14:57:05",
+            "conclusion": "Job ran and ended with no listing."
+          }
+        ],
+        "verified_sequence": [
+          "1. POST /publish.json -> HTTP 200, empty body",
+          "2. Printify fires product:publish:started (captured)",
+          "3. is_locked briefly true, then false within ~5 seconds",
+          "4. NO product:publish:failed event, ever",
+          "5. external.id remains empty string",
+          "6. Native Printify UI produces the same generic failure"
+        ],
+        "what_this_rules_out": [
+          "TikTok product-category or brand/IP rejection - a rejection returns a reason and would fire product:publish:failed. Nothing fired.",
+          "sales_channel_properties - separately falsified; writable, populated, publish still failed.",
+          "Malformed product data - Printify validates on its own side and would report it as a failure event.",
+          "Transport or polling error on our side - the started event proves the webhook path works end to end."
+        ],
+        "leading_conclusion": "This is a Printify-side integration fault on the TikTok channel, not a validation rejection of this product. The publish job is dispatched and then dies without reporting. Because it fails silently on BOTH the API and the native UI, it is not something our execution path can fix.",
+        "single_decisive_test_remaining": "Re-publish a known-good control (CORE-004 6aa0aec1a3a04c53c6075920 or CORE-005 6aa0b107144aa4cd020d00ea, both provider 92, both already live). If a control also starts-and-dies, the TikTok connection for shop 28861434 is broken shop-wide since yesterday, and the fix is reconnecting the channel. If a control republishes cleanly, the fault is specific to blueprint 1522 / provider 23. NOT RUN - it pushes an update to a live listing and needs D'Andre's authorisation.",
+        "artifacts_left_in_place": {
+          "printify_webhooks": [
+            {
+              "id": "6aa2c398f0247a02fb0c16cd",
+              "topic": "product:publish:failed"
+            },
+            {
+              "id": "6aa2c51d4d01b88a3404bc00",
+              "topic": "product:publish:started"
+            }
+          ],
+          "make_hook": {
+            "id": 2797366,
+            "name": "TEMP MM-014 Printify Publish Failure Capture",
+            "url": "https://hook.us2.make.com/r80kh3xseu41tdx4lr5nttalee2h3maa"
+          },
+          "session_webhook_trigger_id": "cca0b070-39cd-4201-9e5b-d51ed569268b (unused - the Anthropic endpoint only accepts artifact-service-signed deliveries, so Printify could not post to it)",
+          "note": "Deliberately left active so the next publish attempt captures any failure reason automatically. Remove when the batch closes."
+        },
+        "knowledge_for_operating_file": [
+          "Printify validates webhook topics: an invalid topic returns [400] Webhook validation failed. That makes webhook registration a reliable way to test which events exist.",
+          "product:publish:started and product:publish:failed are both real Printify topics.",
+          "A TikTok publish that returns HTTP 200 and fires publish:started but never publish:failed is a silent Printify-side abandonment, not a product rejection.",
+          "There is no publishing_status endpoint - it 404s."
         ]
       }
     }
