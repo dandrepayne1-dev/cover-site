@@ -1,0 +1,33 @@
+{
+  "snapshot_of": "Printify product 6aa223d66c320fa5a00b1bb6",
+  "shop_id": 28861434,
+  "taken_at": "2026-09-10T11:42:13Z",
+  "reason": "Full restore point captured before a diagnostic partial PUT of sales_channel_properties.",
+  "title": "Chrome Orchard AirPods Max Case, Burgundy Cobalt Art Headphone Cover, Matte Hard Shell",
+  "blueprint_id": 1522,
+  "print_provider_id": 23,
+  "updated_at_at_snapshot": "2026-09-10 11:31:57+00:00",
+  "is_locked": false,
+  "visible": true,
+  "external": null,
+  "sales_channel_properties": [],
+  "variants": [
+    {"id": 109344, "sku": "20193650867581843311", "cost": 1642, "price": 1642, "title": "AirPods Max / White / Glossy", "is_enabled": false, "is_default": true},
+    {"id": 109345, "sku": "29137653989384847715", "cost": 1642, "price": 3995, "title": "AirPods Max / White / Matte", "is_enabled": true, "is_default": false}
+  ],
+  "print_areas": [
+    {
+      "variant_ids": [109344, 109345],
+      "placeholders": [
+        {"position": "Left",  "decoration_method": "dye-sublimation",
+         "images": [{"id": "6aa293823f07cd75334247e1", "name": "MM-20260909-014-CHROME-ORCHARD-LEFT-V2-1375x1578.png", "width": 1375, "height": 1578, "x": 0.5, "y": 0.5, "scale": 1, "angle": 0, "flipX": false, "flipY": false}]},
+        {"position": "Right", "decoration_method": "dye-sublimation",
+         "images": [{"id": "6aa29388388f1bcd03bcb29c", "name": "MM-20260909-014-CHROME-ORCHARD-RIGHT-V2-1375x1578.png", "width": 1375, "height": 1578, "x": 0.5, "y": 0.5, "scale": 1, "angle": 0, "flipX": false, "flipY": false}]},
+        {"position": "all", "decoration_method": "dye-sublimation", "images": []}
+      ],
+      "background": "#ffffff"
+    }
+  ],
+  "tags": ["airpods max case","headphone case","chrome orchard","burgundy aesthetic","cobalt art","matte hard case","tech accessory","art headphone cover","gift for her","aesthetic tech"],
+  "restore_note": "If a diagnostic write damages the product, restore print_areas and variants from this record. Both V2 image ids remain valid Printify uploads."
+}
