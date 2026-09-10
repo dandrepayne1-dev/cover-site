@@ -10,7 +10,10 @@
   ],
   "blocked_at": "TIKTOK_LISTING_CREATION",
   "blocked_at_ts": "2026-09-10T11:36:00Z",
-  "blocked_reason": "V2 masters verified (black band cleared, full bleed restored), swapped onto the existing draft, render QC PASSED at 92, economics PASSED at 47.91%. Two Printify publish calls to TikTok returned HTTP 200 but created no listing - external.id never populated across three polls over 8 minutes, while two other products in the same shop carry external.id. Most probable cause: TikTok product category required, exposed via sales_channel_properties which is not writable through the product API.",
+  "blocked_reason": "TikTok publish fails on API and native UI. sales_channel_properties diagnostic run and FALSIFIED: both same-shop controls carry all-null values, the partial PUT was accepted (200) and readback confirmed a populated object, but publish still produced no external.id. Note sales_channel_properties IS writable, correcting a prior operating-file assumption. Strongest remaining lead: blueprint 1522 / provider 23 (WOYC) TikTok eligibility - both controls use provider 92.",
   "published": false,
-  "attempt": 1
+  "attempt": 1,
+  "diagnostics_run": [
+    "sales_channel_properties transplant - FALSIFIED 2026-09-10T11:57Z"
+  ]
 }

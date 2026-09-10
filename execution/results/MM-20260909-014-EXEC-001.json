@@ -116,7 +116,7 @@
         "Listing title, description and tags were authored here - the package carried no listing copy. They are held with the unpublished draft."
       ],
       "state_preserved": "Draft product 6aa223d66c320fa5a00b1bb6 exists in TikTok shop 28861434, unpublished and not visible to any customer. No TikTok listing was created. Nothing is live. The draft holds the verified economics, correct 1:1 left/right mapping and listing copy, so a corrected-master re-run only needs the two images replaced.",
-      "remaining_blocker": "Printify returns HTTP 200 for the TikTok publish but creates no listing - external.id never populates. Everything upstream of publication is complete and verified.",
+      "remaining_blocker": "TikTok publish fails on both API and native UI. sales_channel_properties ruled out as the cause. Strongest remaining lead: blueprint 1522 / provider 23 (WOYC) TikTok eligibility - both successful controls use provider 92.",
       "v2_resume": {
         "resumed_at": "2026-09-10T11:24:00Z",
         "resume_only": true,
@@ -219,6 +219,86 @@
         "option_b": "Confirm whether blueprint 1522 / provider 23 (WOYC) is TikTok-eligible at all. The two live TikTok products both use provider 92.",
         "option_c": "Route this product to Etsy instead, where this pipeline is fully automated end to end.",
         "recommendation": "Option A, then tell me the listing ID and I will run the two live readbacks and close the batch. If the UI also refuses, that points at Option B."
+      },
+      "scp_diagnostic": {
+        "run_at": "2026-09-10T11:54:00Z",
+        "hypothesis": "Populating sales_channel_properties with proven same-shop values would satisfy a TikTok precondition and let the publish complete.",
+        "verdict": "FALSIFIED",
+        "controls": {
+          "CORE-004_garden_flag": {
+            "product_id": "6aa0aec1a3a04c53c6075920",
+            "external_id": "1732626989276566228",
+            "print_provider_id": 92,
+            "sales_channel_properties": {
+              "delivery_service_id": null,
+              "warehouse_id": null,
+              "free_shipping": false
+            }
+          },
+          "CORE-005_kitchen_towel": {
+            "product_id": "6aa0b107144aa4cd020d00ea",
+            "external_id": "1732626972697596628",
+            "print_provider_id": 92,
+            "sales_channel_properties": {
+              "delivery_service_id": null,
+              "warehouse_id": null,
+              "free_shipping": false
+            }
+          }
+        },
+        "control_comparison": {
+          "same_warehouse_id": true,
+          "same_delivery_service_id": true,
+          "both_values": "null / null",
+          "free_shipping": "false on both",
+          "personalisation_key_present": false,
+          "premise_problem": "Both controls are entirely NULL. There were no proven non-null values to copy, so the transplant could only ever be a structural no-op. The only real difference was an object existing versus an empty array."
+        },
+        "snapshot_taken": "execution/snapshots/MM-20260909-014-EXEC-001-preSCP-snapshot.json (commit 022c4ae)",
+        "put_result": {
+          "http": 200,
+          "accepted": true,
+          "body_sent": {
+            "sales_channel_properties": {
+              "delivery_service_id": null,
+              "warehouse_id": null,
+              "free_shipping": false
+            }
+          }
+        },
+        "hard_check_readback": {
+          "fresh_get": true,
+          "sales_channel_properties": {
+            "delivery_service_id": null,
+            "warehouse_id": null,
+            "free_shipping": false
+          },
+          "is_populated_object_not_empty_array": true,
+          "verdict": "PASS"
+        },
+        "publish_attempt": {
+          "attempted": true,
+          "count": 1,
+          "ts": "2026-09-10T11:54:22Z",
+          "http": 200,
+          "body": "empty",
+          "poll_at": "2026-09-10T11:57:32Z",
+          "elapsed_min": 3.2,
+          "external": {
+            "id": "",
+            "handle": ""
+          },
+          "external_id_non_empty": false,
+          "result": "FAILED - no TikTok listing created"
+        },
+        "side_effect_observed": "Before the PUT the product had NO external key at all. After the PUT it returns external:{\"id\":\"\",\"handle\":\"\"} - empty strings. This is a schema artifact of the write, NOT a listing. Any future check must require a NON-EMPTY external.id; a truthiness test on the object alone would now produce a false positive.",
+        "knowledge_correction": "The operating file records that sales_channel_properties is NOT writable through the product API. That is now disproven: a partial PUT was accepted at HTTP 200 and the value persisted through a fresh GET. It is writable - it just is not the TikTok publish blocker.",
+        "product_integrity_after": "Intact. Title, description, tags, both V2 image mappings (Left 6aa293823f07cd75334247e1, Right 6aa29388388f1bcd03bcb29c at scale 1, angle 0, x/y 0.5), price 3995, variant 109345 enabled, 109344 disabled - all unchanged. No restore needed.",
+        "remaining_hypotheses": [
+          "Blueprint 1522 / print provider 23 (WOYC) may not be TikTok-Shop eligible. Both working controls use print_provider_id 92 - this is now the single clearest structural difference between success and failure.",
+          "A TikTok product category may be required and assigned somewhere other than sales_channel_properties, with no API surface at all.",
+          "The native UI reported the same generic failure, so whatever the gate is, it is not exposed through either surface."
+        ]
       }
     }
   ],
