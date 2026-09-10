@@ -1,1 +1,12 @@
-{"batch_id":"MM-20260909-010-EXEC-001","mm_id":"MM-20260909-010","status":"PENDING","attempt":0,"written_at":"2026-09-10T00:29:00Z","package_path":"execution/packages/MM-20260909-010-EXEC-001.json","asset_path":"execution/assets/MM-20260909-010/night-market-no-01-1014-horizontal-8700x5768.jpg","instruction":"Claim only after preflight. Execute exactly from immutable package and locked asset."}
+{
+  "batch_id": "MM-20260909-010-EXEC-001",
+  "mm_id": "MM-20260909-010",
+  "status": "IN_PROGRESS",
+  "attempt": 1,
+  "written_at": "2026-09-10T00:29:00Z",
+  "package_path": "execution/packages/MM-20260909-010-EXEC-001.json",
+  "asset_path": "execution/assets/MM-20260909-010/night-market-no-01-1014-horizontal-8700x5768.jpg",
+  "instruction": "Claim only after preflight. Execute exactly from immutable package and locked asset.",
+  "started_at": "2026-09-10T01:05:00Z",
+  "preflight": "GO - master SHA-256 6c24afaa... byte-exact at 8700x5768/11041060B, full decode clean, ~304 DPI at 28.5x19.02in finished; package parses and matches handoff; blueprint 1149 / provider 28 / variant 87922 '1014 pcs (Horizontal)' front placeholder 8700x5768 dye-sublimation confirmed live; US shipping profiles retrieved. Exact production cost pending product creation (Printify exposes variant cost only on a created product)."
+}
