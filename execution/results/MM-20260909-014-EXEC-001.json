@@ -3,17 +3,16 @@
   "mm_id": "MM-20260909-014",
   "attempt": 1,
   "executed_at": "2026-09-10T03:32:00Z",
-  "batch_status": "BLOCKED_AT_RENDER_QC_PRODUCTION_DEFECT",
+  "batch_status": "BLOCKED_AT_TIKTOK_PUBLISH",
   "products": [
     {
       "product": "FIRST PAIR - CHROME ORCHARD - AirPods Max case (White / Matte)",
-      "status": "EXECUTION_BLOCKED",
-      "blocked_at": "PRODUCTION_ASSET_GEOMETRY_DEFECT",
+      "status": "NATIVE_UI_REQUIRED",
+      "blocked_at": "TIKTOK_LISTING_CREATION",
       "published": false,
       "marketplace": "TikTok Shop (Printify shop 28861434 'Payne TikTok')",
       "marketplace_listing_id": null,
       "live_url": null,
-
       "preflight_verdict": "GO - all three hard gates passed against pinned commit b012dbce5c4f1fbadcdc8c73ef45b5bb05f387a6",
       "preflight_detail": {
         "gate_1_assets": "PASS - both masters resolve from Git at the pinned commit; left sha256 ebc36bf1bb45e52d6e9ac152a075840bf0cf1eb22e57e7fb324b9cb5a7d95c72 MATCH at 2073356 bytes, right sha256 e486e48a5874ffafeab5e6976d9d12bf130f15453a2636e925139fb15be239fd MATCH at 1944266 bytes, both 1375x1578 PNG, full decode clean",
@@ -22,21 +21,25 @@
         "channel": "PASS - Printify TikTok shop 28861434 connected",
         "variant": "PASS - blueprint 1522 / provider 23 WOYC / variant 109345 'AirPods Max / White / Matte', placeholders Left 1375x1578 and Right 1375x1578 confirmed live"
       },
-
       "claim_status": "CLAIMED - IN_PROGRESS attempt 1, committed before any commerce mutation (50c552e)",
-
       "printify_product_id": "6aa223d66c320fa5a00b1bb6",
-      "enabled_variants": [109345],
-      "disabled_variants": [109344],
+      "enabled_variants": [
+        109345
+      ],
+      "disabled_variants": [
+        109344
+      ],
       "production_master_urls_used": [
         "https://raw.githubusercontent.com/dandrepayne1-dev/cover-site/b012dbce5c4f1fbadcdc8c73ef45b5bb05f387a6/execution/assets/MM-20260909-014/chrome-orchard-left-1375x1578.png",
         "https://raw.githubusercontent.com/dandrepayne1-dev/cover-site/b012dbce5c4f1fbadcdc8c73ef45b5bb05f387a6/execution/assets/MM-20260909-014/chrome-orchard-right-1375x1578.png"
       ],
-      "printify_image_ids": {"left": "6aa223bccc2a77f94001ed45", "right": "6aa223c253847c50b9352e28"},
+      "printify_image_ids": {
+        "left": "6aa223bccc2a77f94001ed45",
+        "right": "6aa223c253847c50b9352e28"
+      },
       "upload_byte_fidelity": "EXACT - Printify reported 2073356 and 1944266, matching source byte-for-byte with no chunk stripping",
       "placement": "left master -> Left placeholder, right master -> Right placeholder, each scale 1, angle 0, x 0.5, y 0.5 - exact 1:1 fill",
       "creative_untouched": true,
-
       "economics_gate": {
         "verdict": "PASS",
         "exact_verified_production_cost_usd": 16.42,
@@ -54,20 +57,22 @@
         "note": "Every economics figure in the package re-authenticated live and matched exactly. A second US shipping profile at 5.69 also exists, which would give 44.66%. Margin sits a few points under the standing 50% house preference but matches the package's own approved 47.9% target, and is pre-marketplace-fee.",
         "tiktok_fees": "NOT retrievable - no connected tool exposes the TikTok Shop fee schedule. The 47.91% figure is explicitly BEFORE marketplace fees."
       },
-
       "render_qc_verdict": {
         "overall": 78,
         "verdict": "REVIEW",
         "classification": "PRINT_PLACEMENT_FAILURE",
-        "placement": 8, "scale": 8, "crop": 7, "orientation": 8,
-        "readability": 8, "colour": 9, "seam_risk": 7,
+        "placement": 8,
+        "scale": 8,
+        "crop": 7,
+        "orientation": 8,
+        "readability": 8,
+        "colour": 9,
+        "seam_risk": 7,
         "issues": "Crop cuts through cherry stems and flower centers awkwardly, paired elements misaligned between left and right cases",
         "assessment": "The reviewer partially detected the real defect below but misattributed it. No crop is applied by Printify - both masters are exact 1:1 fills of their placeholders at scale 1 - so the truncation it saw comes from the asset itself."
       },
-
-      "gallery_qc_verdict": "NOT REACHED - blocked before publish.",
+      "gallery_qc_verdict": "NOT REACHED - no listing exists to carry a gallery. TikTok remains gallery-limited regardless: no API replaces the customer-facing gallery.",
       "external_readback_timestamps": [],
-
       "BLOCKING_DEFECT": {
         "summary": "Both approved production masters carry a solid black letterbox band across the bottom of the print area.",
         "measured": {
@@ -90,7 +95,6 @@
         "required_fix": "Re-export both masters with the cup silhouette rendered to the full 1375x1578 print area at aspect 0.8714, with no letterbox padding. Artwork content, palette, motifs and composition stay exactly as approved - this is a re-export at the correct aspect, not a redesign.",
         "owner": "ChatGPT Creative"
       },
-
       "upstream_work_completed": [
         "all three hard gates verified against the pinned commit",
         "both masters verified byte-exact by SHA-256, dimensions and full decode",
@@ -104,7 +108,6 @@
         "render QC run",
         "deterministic asset geometry analysis, which found the blocking defect"
       ],
-
       "non_blocking_findings": [
         "Printify's placeholder positions are capitalised 'Left'/'Right'; the package uses lowercase. Mapped correctly to the API's casing.",
         "Creating on blueprint 1522 auto-populates both finishes. Only 109345 (Matte) is enabled; 109344 (Glossy) remains disabled at Printify's default price=cost.",
@@ -112,18 +115,122 @@
         "TikTok remains gallery-limited: no available API replaces the customer-facing gallery, so even on a clean re-run the expected end state is PUBLISHED_GALLERY_BLOCKED rather than a premium gallery.",
         "Listing title, description and tags were authored here - the package carried no listing copy. They are held with the unpublished draft."
       ],
-
       "state_preserved": "Draft product 6aa223d66c320fa5a00b1bb6 exists in TikTok shop 28861434, unpublished and not visible to any customer. No TikTok listing was created. Nothing is live. The draft holds the verified economics, correct 1:1 left/right mapping and listing copy, so a corrected-master re-run only needs the two images replaced.",
-
-      "remaining_blocker": "Both approved masters carry a 99 px solid black letterbox band across the bottom 6.27% of the print area. Publishing would print that band on every unit."
+      "remaining_blocker": "Printify returns HTTP 200 for the TikTok publish but creates no listing - external.id never populates. Everything upstream of publication is complete and verified.",
+      "v2_resume": {
+        "resumed_at": "2026-09-10T11:24:00Z",
+        "resume_only": true,
+        "reclaimed": false,
+        "new_product_created": false,
+        "pinned_commit": "51b83cbd6a15bdae83e8b4b5b8150526f0088371",
+        "replacement_assets_verified": {
+          "left": {
+            "sha256": "4f613d425da9722420e3a99185a7a9a6668be49ee03ee697c24fd650c731fda6",
+            "match": true,
+            "bytes": 2182096,
+            "bytes_match": true,
+            "dims": "1375x1578",
+            "differs_from_forbidden_hash": true
+          },
+          "right": {
+            "sha256": "bb933eaf134c1c651e007abe88d384bdf07a04195f1d5e81b92c53f4b3be5676",
+            "match": true,
+            "bytes": 2126378,
+            "bytes_match": true,
+            "dims": "1375x1578",
+            "differs_from_forbidden_hash": true
+          },
+          "black_band_check": "CLEARED - zero rows >95% near-black in either file (was rows 1479-1577 in V1)",
+          "letterbox_padding_check": "CLEARED - zero full-width white rows; artwork now fills 100% of width AND 100% of height (was 93.5%/93.7%)",
+          "design_integrity": "visually confirmed as the same approved CHROME ORCHARD design - same palette, motifs and left/right counterbalance, now extended to true full bleed"
+        },
+        "printify_image_ids_v2": {
+          "left": "6aa293823f07cd75334247e1",
+          "right": "6aa29388388f1bcd03bcb29c"
+        },
+        "upload_byte_fidelity": "EXACT - Printify reported 2182096 and 2126378, matching source byte-for-byte",
+        "image_replacement": "PUT on existing draft only. Readback confirms Left->V2 left, Right->V2 right, both scale 1 angle 0 x/y 0.5. Old V1 image ids no longer referenced.",
+        "note_on_put": "Printify rejected a PUT carrying only variant 109345 in print_areas.variant_ids ([400] variants do not match blueprint/provider). The update requires ALL product variants listed, so [109344, 109345] was sent. This changes only the print-area mapping - 109344 remains disabled."
+      },
+      "render_qc_verdict_v2": {
+        "overall": 92,
+        "verdict": "PASS",
+        "classification": "NONE",
+        "placement": 10,
+        "scale": 9,
+        "crop": 9,
+        "orientation": 10,
+        "readability": 9,
+        "colour": 9,
+        "seam_risk": 10,
+        "issues": "Minor edge crop on floral details, slight color saturation variance",
+        "improvement_over_v1": "78 REVIEW / PRINT_PLACEMENT_FAILURE -> 92 PASS / NONE",
+        "black_band": "not present in the render"
+      },
+      "economics_gate_revalidated": {
+        "production_cost_usd": 16.42,
+        "us_shipping_usd": 4.39,
+        "landed_usd": 20.81,
+        "retail_usd": 39.95,
+        "gross_margin_pct": 47.91,
+        "verdict": "PASS",
+        "unchanged_from_v1_check": true
+      },
+      "publish_attempt": {
+        "channel": "TikTok Shop via Printify shop 28861434",
+        "attempts": [
+          {
+            "n": 1,
+            "ts": "2026-09-10T11:27:14Z",
+            "http": 200,
+            "body": "empty",
+            "product_updated_at_after": "11:27:20",
+            "is_locked_after": false,
+            "external": null
+          },
+          {
+            "n": 2,
+            "ts": "2026-09-10T11:31:54Z",
+            "http": 200,
+            "body": "empty",
+            "product_updated_at_after": "11:31:57",
+            "is_locked_after": false,
+            "external": null
+          }
+        ],
+        "polls": [
+          "11:28:34 - no external",
+          "11:31:23 - no external",
+          "11:35:54 - no external"
+        ],
+        "result": "NO TIKTOK LISTING CREATED",
+        "evidence_it_is_a_real_failure_not_timing": {
+          "positive_control": "Two products in this SAME TikTok shop published successfully and both carry external.id: CORE-005 towel 6aa0b107144aa4cd020d00ea -> external.id 1732626972697596628, and CORE-004 garden flag 6aa0aec1a3a04c53c6075920 -> external.id 1732626989276566228, each with handle https://seller-us.tiktok.com/product/edit/<id> and type 16.",
+          "successful_products_also_have": "sales_channel_properties as an OBJECT ({delivery_service_id, warehouse_id, free_shipping}). Ours remains an empty array [].",
+          "lock_behaviour": "A successful publish holds is_locked TRUE while processing then unlocks WITH external populated (observed on MM-20260909-004 Etsy). Ours unlocked within ~6 seconds of each attempt with no external set.",
+          "elapsed": "over 8 minutes across two attempts and three polls"
+        },
+        "most_probable_cause": "TikTok Shop requires a TikTok product category on every listing. Printify exposes that through sales_channel_properties, which this operating file already records as NOT writable through the product API. The two products that published successfully use print_provider_id 92 on established blueprints; this one is blueprint 1522 / provider 23 (WOYC). Stated as the leading hypothesis with the evidence above, NOT as a verified fact - Printify surfaces no publish-failure reason through any connected API.",
+        "not_attempted": "No third publish attempt, and no attempt to write sales_channel_properties (not writable). No new product was created at any point."
+      },
+      "what_is_ready": "Draft 6aa223d66c320fa5a00b1bb6 is fully built and QC-passed: V2 masters placed 1:1, variant 109345 enabled at $39.95, cost $16.42, shipping $4.39, margin 47.91%, render QC 92 PASS. It needs only the publish step to complete.",
+      "decision_required_from_dandre": {
+        "option_a": "Publish this product from the Printify UI, where the TikTok category selector is available. Fastest path - everything else is done and verified.",
+        "option_b": "Confirm whether blueprint 1522 / provider 23 (WOYC) is TikTok-eligible at all. The two live TikTok products both use provider 92.",
+        "option_c": "Route this product to Etsy instead, where this pipeline is fully automated end to end.",
+        "recommendation": "Option A, then tell me the listing ID and I will run the two live readbacks and close the batch. If the UI also refuses, that points at Option B."
+      }
     }
   ],
-
   "totals": {
-    "approved": 1, "executed": 1, "live_verified": 0,
-    "gallery_blocked": 0, "economics_blocked": 0,
-    "asset_defect_blocked": 1, "listings_produced": 0
+    "approved": 1,
+    "executed": 1,
+    "live_verified": 0,
+    "gallery_blocked": 0,
+    "economics_blocked": 0,
+    "asset_defect_blocked": 0,
+    "native_ui_required": 1,
+    "listings_produced": 0
   },
-
-  "queue_note": "Queue record deliberately left IN_PROGRESS, not COMPLETE and not FAILED. Nothing was published, so COMPLETE would be false and can never be reopened; FAILED is terminal and needs an external requeue, while this is fully recoverable by re-exporting two images. The claim is retained so execution resumes at the upload step once corrected masters land."
+  "queue_note": "Queue record stays IN_PROGRESS. Nothing published so COMPLETE would be false and can never be reopened; FAILED is terminal and this is recoverable by a single UI publish. The asset defect that blocked V1 is resolved and recorded."
 }

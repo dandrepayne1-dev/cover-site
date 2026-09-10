@@ -1,1 +1,16 @@
-{"batch_id":"MM-20260909-014-EXEC-001","mm_id":"MM-20260909-014","status":"IN_PROGRESS","resume_stage":"IMAGE_REPLACEMENT","printify_product_id":"6aa223d66c320fa5a00b1bb6","asset_paths":["execution/assets/MM-20260909-014/chrome-orchard-left-V2-1375x1578.png","execution/assets/MM-20260909-014/chrome-orchard-right-V2-1375x1578.png"]}
+{
+  "batch_id": "MM-20260909-014-EXEC-001",
+  "mm_id": "MM-20260909-014",
+  "status": "IN_PROGRESS",
+  "resume_stage": "PUBLISH",
+  "printify_product_id": "6aa223d66c320fa5a00b1bb6",
+  "asset_paths": [
+    "execution/assets/MM-20260909-014/chrome-orchard-left-V2-1375x1578.png",
+    "execution/assets/MM-20260909-014/chrome-orchard-right-V2-1375x1578.png"
+  ],
+  "blocked_at": "TIKTOK_LISTING_CREATION",
+  "blocked_at_ts": "2026-09-10T11:36:00Z",
+  "blocked_reason": "V2 masters verified (black band cleared, full bleed restored), swapped onto the existing draft, render QC PASSED at 92, economics PASSED at 47.91%. Two Printify publish calls to TikTok returned HTTP 200 but created no listing - external.id never populated across three polls over 8 minutes, while two other products in the same shop carry external.id. Most probable cause: TikTok product category required, exposed via sales_channel_properties which is not writable through the product API.",
+  "published": false,
+  "attempt": 1
+}
