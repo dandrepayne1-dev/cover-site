@@ -116,7 +116,7 @@
         "Listing title, description and tags were authored here - the package carried no listing copy. They are held with the unpublished draft."
       ],
       "state_preserved": "Draft product 6aa223d66c320fa5a00b1bb6 exists in TikTok shop 28861434, unpublished and not visible to any customer. No TikTok listing was created. Nothing is live. The draft holds the verified economics, correct 1:1 left/right mapping and listing copy, so a corrected-master re-run only needs the two images replaced.",
-      "remaining_blocker": "Printify dispatches the TikTok publish job (product:publish:started fires) then abandons it silently - no failure event, no listing, on both API and native UI. Not a product-data or category rejection. Next step is a control re-publish to determine whether the TikTok channel connection is broken shop-wide.",
+      "remaining_blocker": "Printify's TikTok publish worker wipes the product's delivery_service_id/warehouse_id and aborts silently. Reproduced under controlled conditions. Printify's own UI copy, configured with valid TikTok IDs, failed identically. Points to blueprint 1522 / provider 23 not being bindable to this TikTok shop's fulfilment.",
       "v2_resume": {
         "resumed_at": "2026-09-10T11:24:00Z",
         "resume_only": true,
@@ -381,7 +381,48 @@
           "product:publish:started and product:publish:failed are both real Printify topics.",
           "A TikTok publish that returns HTTP 200 and fires publish:started but never publish:failed is a silent Printify-side abandonment, not a product rejection.",
           "There is no publishing_status endpoint - it 404s."
-        ]
+        ],
+        "round_2": {
+          "run_at": "2026-09-10T15:16:00Z",
+          "headline": "Found the mechanism. The Printify TikTok publish worker actively CLEARS the product's TikTok fulfilment config (delivery_service_id / warehouse_id) and aborts, without emitting any failure event.",
+          "discovery_duplicate_product": {
+            "id": "6aa2b485eb6241a761040522",
+            "title": "Copy of Chrome Orchard AirPods Max Case, Burgundy Cobalt Art Headphone Cover, Matte Hard Shell",
+            "created_at": "2026-09-10 13:45:41",
+            "updated_at": "2026-09-10 14:27:37",
+            "origin": "Created by the native Printify UI publish attempt - the UI duplicated the product rather than publishing the original.",
+            "significance": "It carries REAL TikTok values that no other product had: delivery_service_id 7129736060325594926, warehouse_id 7682935300981671693. So the UI does know this shop's TikTok warehouse and delivery service.",
+            "outcome": "It ALSO failed - external.id is empty. A product configured by Printify's own UI, with valid TikTok fulfilment IDs, still did not publish.",
+            "action_required": "CLEANUP - this is an unwanted duplicate in the TikTok shop. Not deleted; deletion is D'Andre's call."
+          },
+          "controlled_experiment": {
+            "step_1": "PUT sales_channel_properties = {delivery_service_id 7129736060325594926, warehouse_id 7682935300981671693, free_shipping false} at 15:21:44 - accepted, values confirmed in the response.",
+            "step_2": "POST /publish.json at 15:21:53 - HTTP 200, empty body.",
+            "step_3": "Product updated_at moved to 15:21:57, so the publish worker did touch the product.",
+            "step_4": "Fresh GET at 15:23:13 - sales_channel_properties back to {null, null, false}.",
+            "result": "REPRODUCIBLE. The publish attempt resets the TikTok fulfilment config to null. Observed twice.",
+            "conclusion": "Printify is not ignoring the publish. It runs, evaluates the product against TikTok fulfilment, rejects the warehouse/delivery binding, wipes it, and stops - silently."
+          },
+          "failure_event_recheck": {
+            "method": "Re-armed hook learning mode (the detector proven to work when it caught product:publish:started), re-pointed product:publish:started away so only product:publish:failed could deliver.",
+            "result": "learning stayed true, dataStructure null - no failure event fired even WITH real fulfilment IDs.",
+            "note": "queueCount is NOT a reliable detector here - with no scenario attached Make appears to discard rather than queue. Learning mode is the reliable signal."
+          },
+          "additional_probes": [
+            {
+              "probe": "GET /v1/shops/28861434.json",
+              "result": "[404] Not found",
+              "conclusion": "No per-shop detail endpoint exists."
+            }
+          ],
+          "revised_conclusion": "The fault is in the Printify->TikTok fulfilment binding for this product, not in our data, not in the artwork, and not in a missing field. Evidence: (a) Printify's own UI built a copy with valid TikTok warehouse/delivery IDs and that copy failed too; (b) supplying those same valid IDs by API gets them wiped by the publish worker; (c) no failure event is ever emitted. The most consistent explanation is that blueprint 1522 / print provider 23 (WOYC) cannot be bound to this TikTok shop's fulfilment - both known-good published products use print_provider_id 92.",
+          "recommended_next_steps": [
+            "Ask Printify support directly, quoting product 6aa223d66c320fa5a00b1bb6, shop 28861434, blueprint 1522, provider 23, and the reproducible symptom that publish nulls sales_channel_properties without emitting product:publish:failed. This is a supplier-side answer, not one obtainable from our surface.",
+            "Or re-source this product on a TikTok-proven provider. Provider 92 is the only one with demonstrated TikTok publishes in this shop.",
+            "Or route to Etsy, where this pipeline is fully automated and proven.",
+            "Delete the duplicate 'Copy of' product 6aa2b485eb6241a761040522 either way."
+          ]
+        }
       }
     }
   ],
