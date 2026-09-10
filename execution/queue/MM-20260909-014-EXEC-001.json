@@ -1,1 +1,14 @@
-{"batch_id":"MM-20260909-014-EXEC-001","mm_id":"MM-20260909-014","status":"PENDING","marketplace":"TIKTOK_SHOP","asset_paths":["execution/assets/MM-20260909-014/chrome-orchard-left-1375x1578.png","execution/assets/MM-20260909-014/chrome-orchard-right-1375x1578.png"]}
+{
+  "batch_id": "MM-20260909-014-EXEC-001",
+  "mm_id": "MM-20260909-014",
+  "status": "IN_PROGRESS",
+  "marketplace": "TIKTOK_SHOP",
+  "asset_paths": [
+    "execution/assets/MM-20260909-014/chrome-orchard-left-1375x1578.png",
+    "execution/assets/MM-20260909-014/chrome-orchard-right-1375x1578.png"
+  ],
+  "package_path": "execution/packages/MM-20260909-014-EXEC-001.json",
+  "started_at": "2026-09-10T03:20:00Z",
+  "attempt": 1,
+  "preflight": "GO - pinned commit b012dbce on the authoritative branch; package + queue + both assets resolve from Git; left sha256 ebc36bf1... and right sha256 e486e48a... both MATCH byte-exact at 1375x1578 PNG (2073356 / 1944266 bytes), full decode clean, aspect exactly the placeholder; blueprint 1522 / provider 23 WOYC / variant 109345 'AirPods Max / White / Matte' with Left+Right 1375x1578 confirmed live; TikTok shop 28861434 connected."
+}
